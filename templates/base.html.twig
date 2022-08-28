@@ -5,15 +5,94 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
+
+
+
+        <!-- Bootstrap Icon -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
+
+    <body>
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+            <div class="container">
+                <!-- NAV LOGO -->
+                <a class="navbar-brand d-flex align-items-center fs-2 fw-semibold text-white" href="{{ path('app_home') }}">
+                    <i class="bi bi-circle-fill text-secondary fs-2 me-2"></i>
+                    Cliks
+                </a>
+
+                <!-- BURGER JS -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- DIV NAV LINK -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- LIST NAV LINK -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 header-pages fs-4">
+                        <!-- HOME -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+                        </li>
+                        <!-- JSP -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="">Produits</a>
+                        </li>
+                        {% if app.user %}
+                            {% if 'ROLE_ADMIN' in app.user.roles %}
+                            <!-- ADMIN -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ path('admin') }}">admin</a>
+                            </li>
+                            {% endif %}
+                        {% endif %}
+
+                    </ul>
+
+                    <!-- ICON NAV BAR -->
+                    <ul class="navbar-nav">
+                        <!-- SEARCH LINK -->
+                        <li class="nav-item">
+                            <a href="#" class="fs-4 text-white nav-link"><i class="bi bi-search"></i></a>
+                        </li>
+                        {% if app.user %}
+                        <!-- LINK TO PROFILE (ICON) -->
+                        <li class="nav-item">
+                            <a href="{{ path('app_register') }}" class="fs-3 text-white nav-link"><i class="bi bi-person"></i></a>
+                        </li>
+                            {% else %}
+                                <!-- LINK TO LOGIN OR REGISTER (ICON) -->
+                                <li class="nav-item">
+                                    <a href="{{ path('app_login') }}" id="navUser-icon" class="fs-3 text-white nav-link"><i class="bi bi-person"></i></a>
+                                </li>
+                        {% endif %}
+                        <!-- CART LINK -->
+                        <li class="nav-item">
+                            <a href="#" class="fs-4 text-white nav-link"><i class="bi bi-cart2"></i></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
         {% block body %}{% endblock %}
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     </body>
 </html>
