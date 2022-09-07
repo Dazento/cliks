@@ -6,6 +6,8 @@ use App\Entity\Product;
 use App\Entity\ProductCategory;
 use App\Entity\ProductImage;
 use App\Entity\ProductStatus;
+use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -47,9 +49,31 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Product', 'fas fa-list', Product::class);
-        yield MenuItem::linkToCrud('ProductCategory', 'fas fa-list', ProductCategory::class);
-        yield MenuItem::linkToCrud('ProductImage', 'fas fa-list', ProductImage::class);
-        yield MenuItem::linkToCrud('ProductStatus', 'fas fa-list', ProductStatus::class);
+
+        yield MenuItem::section('Produits');
+
+        yield MenuItem::subMenu('Produits', 'fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Créer un produit', 'fas fa-plus', Product::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les produits', 'fas fa-eye', Product::class),
+        ]);
+
+        yield MenuItem::subMenu('Catégories', 'fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Créer une Catégorie', 'fas fa-plus', ProductCategory::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les Catégories', 'fas fa-eye', ProductCategory::class),
+        ]);
+
+        yield MenuItem::subMenu('Images', 'fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', ProductImage::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les images', 'fas fa-eye', ProductImage::class),
+        ]);
+
+        yield MenuItem::subMenu('Status', 'fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Créer un status', 'fas fa-plus', ProductStatus::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les status', 'fas fa-eye', ProductStatus::class),
+        ]);
+
+        yield MenuItem::section('Utilisateurs');
+
+        yield MenuItem::linkToCrud('User', 'fa fa-user', User::class);
     }
 }

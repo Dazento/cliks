@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\CreatedAtTrait;
+use App\Entity\Trait\SlugTrait;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,6 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
+    use CreatedAtTrait;
+    use SlugTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -26,7 +31,7 @@ class Product
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?float $price = null;
+    private ?int $price = null;
 
     #[ORM\Column]
     private ?int $stock = null;
@@ -34,26 +39,30 @@ class Product
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $modifiedAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?ProductStatus $status = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?ProductCategory $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, orphanRemoval: true)]
     private Collection $productImages;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderedProduct::class)]
     private Collection $orderedProducts;
+
+    #[ORM\Column]
+    private ?bool $active = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mainImage = null;
 
 
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
         $this->orderedProducts = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -97,12 +106,12 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(float $price): self
+    public function setPrice(int $price): self
     {
         $this->price = $price;
 
@@ -133,17 +142,6 @@ class Product
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
 
     public function getStatus(): ?ProductStatus
     {
@@ -222,6 +220,30 @@ class Product
         if ($this->orderedProducts->removeElement($orderedProduct)) {
             $orderedProduct->removeProduct($this);
         }
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getMainImage(): ?string
+    {
+        return $this->mainImage;
+    }
+
+    public function setMainImage(string $mainImage): self
+    {
+        $this->mainImage = $mainImage;
 
         return $this;
     }

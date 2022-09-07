@@ -1,0 +1,178 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: .6s;
+  z-index: 1;
+  padding: 1.5rem 0;
+  background-color: #3E3E3E;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 2rem;
+    }
+
+    h1 {
+      margin-left: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    ul {
+      display: flex;
+
+      li {
+        list-style: none;
+      }
+    }
+
+    #nav-links {
+      li {
+        margin-left: 50px;
+      }
+      a {
+        padding: 5px;
+      }
+      a.active {
+        border-bottom: solid 2px white;
+      }
+    }
+
+    #nav-links.mobile-menu {
+      transform: translateX(0);
+    }
+
+    .nav-icon {
+      li {
+        margin-left: 30px;
+      }
+    }
+
+    #burger-menu {
+      display: none;
+      font-size: 2.5rem;
+      position: absolute;
+      left: 3rem;
+      color: white;
+    }
+  }
+}
+
+.scrolled {
+  background-color: #3E3E3E;
+}
+
+
+@media screen and (max-width: 767.98px) {
+  header {
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    nav {
+      #burger-menu {
+        display: block;
+        z-index: 1;
+        cursor: pointer;
+      }
+
+      .open {
+        display: block;
+      }
+
+      .close {
+        display: none;
+      }
+
+      .opened {
+        .open {
+          display: none;
+        }
+
+        .close {
+          display: block;
+        }
+      }
+
+      #nav-links {
+        position: absolute;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(6px);
+        width: 100%;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-100%);
+        transition: all .3s ease;
+
+        li {
+          margin: 20px 0;
+          font-size: 1.8rem;
+          font-weight: 600;
+          
+          a {
+            color: #3E3E3E;
+          }
+          a.active {
+            border-bottom: solid 3px #3E3E3E;
+          }
+        }
+        
+      }
+
+      .nav-icon {
+        margin-right: 3rem;
+
+        li {
+          margin-left: 15px;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  header {
+    .logo {
+      left: 80px;
+      transform: translateX(0);
+    }
+
+    nav {
+      #burger-menu {
+        left: 2rem;
+      }
+
+      .nav-icon {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

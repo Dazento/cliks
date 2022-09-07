@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductsController!{% endblock %}
+
+{% block stylesheets %}
+<!-- product CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/product.css') }}">
+{% endblock %}
+
+{% block body %}
+<main>
+    <section class="test">
+        <div class="container">
+            <div class="product">
+                <div class="col col-md-6 images">
+                    <img src="/assets/img/product/mainImg/{{ product.mainImage }}" class="img-fluid rounded-3"
+                        alt="Image du produit">
+                </div>
+
+                <div class="col col-md-6 description">
+                    <h1>{{ product.name }}</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id dignissim nunc. Nulla ac
+                        ullamcorper velit, sed porta est. In hac habitasse platea dictumst. Curabitur laoreet rutrum
+                        tortor, ac aliquam neque gravida pellentesque. Ut vitae ipsum erat. Aenean iaculis tincidunt
+                        sapien non dictum. Nam sit amet mollis felis. Donec eleifend felis id cursus mollis. Cras quis
+                        hendrerit felis. Nunc sollicitudin, sem sed tempor maximus, massa nisi aliquet nisl, sit amet.
+                    </p>
+                    <a href="" class="btn btn-dark">Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
