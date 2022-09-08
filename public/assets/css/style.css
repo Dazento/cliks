@@ -17,12 +17,41 @@ a {
   margin-right: auto;
 }
 
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgb(211, 211, 211);
+  font-size: 1rem;
+}
+
+textarea {
+  border: 1px solid rgb(211, 211, 211);
+  padding: 1rem;
+  border-radius: 20px;
+  margin-top: 0.5rem;
+}
+
+select {
+  border: 1px solid rgb(211, 211, 211);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+}
+
 .btn {
   display: inline-block;
   padding: 20px 50px;
   border-radius: 15px;
   text-decoration: none;
   text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .btn-dark {
@@ -32,6 +61,21 @@ a {
 
 .btn-dark:hover {
   background-color: #595959;
+  color: white;
+}
+
+.alert {
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.alert-error {
+  background-color: rgb(255, 146, 146);
+  color: white;
+}
+
+.alert-info {
+  background-color: rgb(49, 128, 255);
   color: white;
 }
 

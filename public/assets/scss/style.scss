@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+// Var
+  $border: 1px solid rgb(211, 211, 211);
 
 // Globals
 * {
@@ -19,12 +21,43 @@ a {
   margin-right: auto;
 }
 
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  margin-top: .5rem;
+  padding: .8rem;
+  border-radius: 10px;
+  border: $border;
+  font-size: 1rem;
+}
+
+textarea {
+  border: $border;
+  padding: 1rem;
+  border-radius: 20px;
+  margin-top: .5rem;
+}
+
+select {
+  border: $border;
+  padding: .5rem 1rem;
+  border-radius: 10px;
+  margin-top: .5rem;
+}
+
+
+// Button
 .btn {
   display: inline-block;
   padding: 20px 50px;
   border-radius: 15px;
   text-decoration: none;
   text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .btn-dark {
@@ -36,3 +69,20 @@ a {
   background-color: #595959;
   color: white;
 }
+
+// Alert
+.alert {
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.alert-error {
+  background-color: rgb(255, 146, 146);
+  color: white;
+}
+
+.alert-info {
+  background-color: rgb(49, 128, 255);
+  color: white;
+}
+

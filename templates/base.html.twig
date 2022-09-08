@@ -42,12 +42,12 @@
                 <ul id="nav-links">
                     <li><a class="link" href="{{ path('app_home') }}">Accueil</a></li>
                     <li><a class="link" href="{{ path('products_index') }}">Produits</a></li>
+                    <li><a class="link" href="{{ path('contact') }}">Contact</a></li>
                     {% if app.user %}
                     {% if 'ROLE_ADMIN' in app.user.roles %}
                     <li><a class="link" href="{{ path('admin') }}">Admin</a></li>
                     {% endif %}
                     {% endif %}
-                    <li><a class="link" href="{{ path('app_home') }}">Contact</a></li>
                 </ul>
             </div>
             <div class="nav-right">

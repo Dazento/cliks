@@ -4,7 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
@@ -18,11 +21,13 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id')->hideOnForm(),
             TextField::new('firstname'),
             TextField::new('lastname'),
-            EmailField::new('email'),
-            TextField::new('password') // Il faut hash le mot de passe
-            // Il faut mettre les rôles
+            EmailField::new('email')
+                ->setFormTypeOption('disabled', 'disabled'),
+            ArrayField::new('roles'),
+            DateTimeField::new('createdAt')->hideOnForm(),
         ];
     }
 

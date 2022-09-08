@@ -7,29 +7,34 @@
 <link rel="stylesheet" href="{{ asset('assets/css/product.css') }}">
 {% endblock %}
 
+{% block javascripts %}
+<script src="{{ asset('assets/js/product.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 <main>
-    <section class="test">
+    <section>
         <div class="container">
             <div class="product">
-                <div class="images">
+                <div class="slider">
                     <img class="img__slider active" src="/assets/img/product/mainImg/{{ product.mainImage }}"
                         alt="Image du produit">
-                    <!-- {% for image in imageList %}
-                    <img class="img__slider" src="{{ asset('assets/img/product/mainImg/')}}{{ image }}"
-                        alt="Image clavier">
-                    {% endfor %} -->
+                    {% for images in imageList %}
+                    <img class="img__slider" src="{{ asset('uploads/product/')}}{{ images.image }}" alt="Image clavier">
+                    {% endfor %}
+                    <div id="next">
+                        <i class="fas fa-chevron-circle-right"></i>
+                    </div>
+                    <div id="prev">
+                        <i class="fas fa-chevron-circle-left"></i>
+                    </div>
                 </div>
 
                 <div class="div-description">
                     <h1>{{ product.name }}</h1>
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id
-                        dignissim nunc. Nulla ac
-                        ullamcorper velit, sed porta est. In hac habitasse platea dictumst. Curabitur laoreet rutrum
-                        tortor, ac aliquam neque gravida pellentesque. Ut vitae ipsum erat. Aenean iaculis tincidunt
-                        sapien non dictum. Nam sit amet mollis felis. Donec eleifend felis id cursus mollis. Cras quis
-                        hendrerit felis. Nunc sollicitudin, sem sed tempor maximus, massa nisi aliquet nisl, sit amet.
-                    </p>
+                    <div class="description">
+                        {{ product.description }}
+                    </div>
                     <!-- <audio controls src="https://www.fesliyanstudios.com/play-mp3/768">
                     </audio> -->
                     <a href="" class="read-more">Voir les détails</a>
@@ -41,5 +46,6 @@
             </div>
         </div>
     </section>
+
 </main>
 {% endblock %}
