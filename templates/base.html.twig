@@ -13,12 +13,12 @@
 
     <!-- globals CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-        <!-- header CSS -->
-        {% if app.request.attributes.get('_route') == 'app_home' %}
-        <link rel="stylesheet" href="{{ asset('assets/css/headerTransparent.css') }}">
-        {% else %}
-        <link rel="stylesheet" href="{{ asset('assets/css/headerDark.css') }}">
-        {% endif %}
+    <!-- header CSS -->
+    {% if app.request.attributes.get('_route') == 'app_home' %}
+    <link rel="stylesheet" href="{{ asset('assets/css/headerTransparent.css') }}">
+    {% else %}
+    <link rel="stylesheet" href="{{ asset('assets/css/headerDark.css') }}">
+    {% endif %}
     {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -40,21 +40,29 @@
                     <h1>Cliks</h1>
                 </a>
                 <ul id="nav-links">
-                    <li><a class="test" href="{{ path('app_home') }}">Accueil</a></li>
-                    <li><a class="test" href="{{ path('products_index') }}">Produits</a></li>
+                    <li><a class="link" href="{{ path('app_home') }}">Accueil</a></li>
+                    <li><a class="link" href="{{ path('products_index') }}">Produits</a></li>
                     {% if app.user %}
                     {% if 'ROLE_ADMIN' in app.user.roles %}
-                    <li><a class="test" href="{{ path('admin') }}">Admin</a></li>
+                    <li><a class="link" href="{{ path('admin') }}">Admin</a></li>
                     {% endif %}
                     {% endif %}
-                    <li><a class="test" href="{{ path('app_home') }}">Contact</a></li>
+                    <li><a class="link" href="{{ path('app_home') }}">Contact</a></li>
                 </ul>
             </div>
             <div class="nav-right">
                 <ul class="nav-icon">
                     <li><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    {% if app.user %}
+                    <li><a href="{{ path('profile_index') }}"><i class="fa-solid fa-user"></i></a></li>
+                    {% else %}
                     <li><a href="{{ path('app_login') }}"><i class="fa-solid fa-user"></i></a></li>
-                    <li><a href=""><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    {% endif %}
+                    {% if app.user %}
+                    <li><a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    {% else %}
+                    <li><a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

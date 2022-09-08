@@ -28,7 +28,6 @@
   width: calc(25% - 20px);
 }
 .products-section .products .product a {
-  text-decoration: none;
   color: #2D2D2D;
 }
 .products-section .products .product a img {

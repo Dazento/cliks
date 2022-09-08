@@ -1,0 +1,59 @@
+.alert {
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.alert-error {
+  background-color: rgb(255, 146, 146);
+  color: white;
+}
+
+.alert-info {
+  background-color: rgb(49, 128, 255);
+  color: white;
+}
+
+section {
+  margin: 6.5rem 0;
+
+  button {
+    border: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    cursor: pointer;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      label {
+        margin-top: 1rem;
+      }
+
+      input {
+        margin-top: .5rem;
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid rgb(211, 211, 211);
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .created {
+    color: #3e3e3e;
+    border-bottom: 1px solid #3e3e3e;
+  }
+}

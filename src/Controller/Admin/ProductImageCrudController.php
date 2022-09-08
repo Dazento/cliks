@@ -20,8 +20,8 @@ class ProductImageCrudController extends AbstractCrudController
     {
         return [
             ImageField::new('image')
-                ->setUploadDir("public/product/uploads")
-                ->setBasePath("/product")
+                ->setUploadDir("public/uploads/product")
+                ->setBasePath("/uploads")
                 ->setRequired(false)
                 ->setUploadedFileNamePattern("[contenthash].[extension]")
             ,

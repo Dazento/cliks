@@ -21,7 +21,6 @@ header .logo h1 {
 }
 header a {
   color: white;
-  text-decoration: none;
   font-weight: 500;
 }
 header nav {
@@ -44,8 +43,12 @@ header nav #nav-links li {
 }
 header nav #nav-links a {
   padding: 5px;
+  font-size: 1.2rem;
 }
 header nav #nav-links a.active {
+  border-bottom: solid 2px white;
+}
+header nav #nav-links a:hover {
   border-bottom: solid 2px white;
 }
 header nav #nav-links.mobile-menu {
@@ -53,6 +56,9 @@ header nav #nav-links.mobile-menu {
 }
 header nav .nav-icon li {
   margin-left: 30px;
+}
+header nav .nav-icon i {
+  font-size: 1.3rem;
 }
 header nav #burger-menu {
   display: none;
@@ -66,6 +72,11 @@ header nav #burger-menu {
   background-color: #3E3E3E;
 }
 
+@media screen and (max-width: 991.98px) {
+  header nav #nav-links li {
+    margin-left: 30px;
+  }
+}
 @media screen and (max-width: 767.98px) {
   header .logo {
     position: absolute;
@@ -115,7 +126,7 @@ header nav #burger-menu {
     border-bottom: solid 3px #3E3E3E;
   }
   header nav .nav-icon {
-    margin-right: 3rem;
+    margin-right: 2rem;
   }
   header nav .nav-icon li {
     margin-left: 15px;

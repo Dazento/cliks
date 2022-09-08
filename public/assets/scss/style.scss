@@ -8,9 +8,31 @@
   font-family: 'Inter', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
-  width: calc(100% - 40px);
+  width: calc(100% - 50px);
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 20px 50px;
+  border-radius: 15px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-dark {
+  background-color: #3E3E3E;
+  color: white;
+}
+
+.btn-dark:hover {
+  background-color: #595959;
+  color: white;
 }

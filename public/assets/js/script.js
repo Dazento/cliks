@@ -4,19 +4,16 @@ const navLinks = document.getElementById("nav-links");
 const bugerIcon = document.getElementById("burger-icon");
 const activePage = window.location.pathname;
 
-
-const navLinksLi = document.querySelectorAll('.test').forEach(link => {
-  if (link.href.includes(`${activePage}`)) {
-    console.log(link);
-    link.classList.add("active");
-  }
+const navLinksLi = document.querySelectorAll('.link').forEach(link => {
+  if (link.href !== window.location.href) return;
+  link.classList.add("active");
 });
 
 window.addEventListener("scroll", function () {
-  if (window.screenY >= 0) {
-      header.classList.add("scrolled");
+  if (window.scrollY > 0) {
+    header.classList.add("scrolled");
   } else {
-      header.classList.remove("scrolled")
+    header.classList.remove("scrolled")
   }
 });
 

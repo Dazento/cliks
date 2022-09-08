@@ -24,6 +24,9 @@ class OrderedProduct
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Order $orderid = null;
 
+    #[ORM\Column]
+    private ?int $quantity = null;
+
     public function __construct()
     {
         $this->Orderid = new ArrayCollection();
@@ -79,6 +82,18 @@ class OrderedProduct
     public function setOrderid(?Order $orderid): self
     {
         $this->orderid = $orderid;
+
+        return $this;
+    }
+
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }

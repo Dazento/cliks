@@ -49,7 +49,6 @@
 }
 .product-section .cards .card a {
   text-align: center;
-  text-decoration: none;
   color: #2D2D2D;
 }
 .product-section .cards .card a h3 {
@@ -80,16 +79,25 @@
 }
 
 @media all and (max-device-width: 991.98px) {
+  .product-section .cards {
+    row-gap: 20px;
+  }
   .product-section .cards .card {
     width: calc(33% - 20px);
   }
 }
 @media all and (max-device-width: 768.98px) {
+  .product-section .cards {
+    row-gap: 20px;
+  }
   .product-section .cards .card {
     width: calc(50% - 20px);
   }
 }
 @media all and (max-device-width: 575.98px) {
+  .product-section .cards {
+    row-gap: 20px;
+  }
   .product-section .cards .card {
     width: calc(100% - 20px);
   }

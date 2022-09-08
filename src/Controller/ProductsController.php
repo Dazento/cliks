@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\ProductImage;
+use App\Repository\ProductImageRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,12 +25,14 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/{slug}', name: '_product')]
-    public function product(Product $product): Response
+    public function product(Product $product, ProductImageRepository $productImageRepository): Response
     {
 
+        $imageList = $productImageRepository->findBy(['product' => $product->getId()]);
         return $this->render('products/product.html.twig', [
             'controller_name' => 'ProductsController',
-            'product' => $product
+            'product' => $product,
+            'imageList' => $imageList
         ]);
     }
 }

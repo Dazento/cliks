@@ -1,0 +1,109 @@
+section {
+  margin-top: 120px;
+}
+section h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+section .checkout {
+  display: flex;
+}
+section .checkout .table-cart {
+  width: 70%;
+}
+section .checkout .table-cart table {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+}
+section .checkout .table-cart table thead {
+  text-align: center;
+}
+section .checkout .table-cart table thead tr {
+  border-bottom: 1px solid rgba(62, 62, 62, 0.1333333333);
+}
+section .checkout .table-cart table thead th {
+  padding: 10px;
+  font-weight: 500;
+}
+section .checkout .table-cart table tbody {
+  text-align: center;
+}
+section .checkout .table-cart table tbody .product {
+  display: flex;
+  align-items: center;
+}
+section .checkout .table-cart table tbody .product img {
+  width: 100px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+section .checkout .table-cart table tbody .total i {
+  color: #3e3e3e;
+}
+section .checkout .table-cart table tbody .total i:hover {
+  color: rgb(224, 77, 77);
+}
+section .checkout .table-cart table tbody td {
+  padding: 1rem 10px;
+}
+section .checkout .table-cart table tbody .quantity {
+  padding: 5px 0;
+  border: 1px solid rgba(62, 62, 62, 0.1333333333);
+  border-radius: 20px;
+}
+section .checkout .table-cart table tbody .quantity a {
+  font-weight: 600;
+  padding: 10px;
+}
+section .checkout .table-cart table tbody .empty-cart {
+  text-align: center;
+}
+section .checkout .table-cart table .text-left {
+  text-align: start;
+}
+section .checkout .final-checkout {
+  width: 30%;
+  margin: 1rem;
+  padding: 2rem;
+  background-color: rgb(240, 240, 240);
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+section .checkout .final-checkout .cart-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+section .checkout .final-checkout a {
+  display: block;
+}
+
+@media all and (max-device-width: 991.98px) {
+  section .checkout {
+    flex-direction: column;
+  }
+  section .checkout .table-cart {
+    width: 100%;
+  }
+  section .checkout .final-checkout {
+    width: 100%;
+  }
+}
+@media all and (max-device-width: 575.98px) {
+  section .checkout .table-cart table thead {
+    display: none;
+  }
+  section .checkout .table-cart table tbody {
+    display: flex;
+    flex-direction: column;
+  }
+  section .checkout .final-checkout {
+    margin: 1rem 0;
+  }
+}
+
+/*# sourceMappingURL=cart.css.map */
