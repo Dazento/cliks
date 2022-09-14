@@ -12,40 +12,38 @@
 {% endblock %}
 
 {% block body %}
-<main>
-    <section>
-        <div class="container">
-            <div class="product">
-                <div class="slider">
-                    <img class="img__slider active" src="/assets/img/product/mainImg/{{ product.mainImage }}"
-                        alt="Image du produit">
-                    {% for images in imageList %}
-                    <img class="img__slider" src="{{ asset('uploads/product/')}}{{ images.image }}" alt="Image clavier">
-                    {% endfor %}
-                    <div id="next">
-                        <i class="fas fa-chevron-circle-right"></i>
-                    </div>
-                    <div id="prev">
-                        <i class="fas fa-chevron-circle-left"></i>
-                    </div>
+<section>
+    <div class="container">
+        <div class="product">
+            <div class="slider">
+                <img class="img__slider active" src="/assets/img/product/mainImg/{{ product.mainImage }}"
+                    alt="Image du produit">
+                {% for images in imageList %}
+                <img class="img__slider" src="{{ asset('uploads/product/')}}{{ images.image }}" alt="Image clavier">
+                {% endfor %}
+                <div id="next">
+                    <i class="fas fa-chevron-circle-right"></i>
                 </div>
-
-                <div class="div-description">
-                    <h1>{{ product.name }}</h1>
-                    <div class="description">
-                        {{ product.description }}
-                    </div>
-                    <!-- <audio controls src="https://www.fesliyanstudios.com/play-mp3/768">
-                    </audio> -->
-                    <a href="" class="read-more">Voir les détails</a>
-                    <p class="price">Price</p>
-                    <h2>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</h2>
-                    <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-dark add-cart">Ajouter au
-                        panier</a>
+                <div id="prev">
+                    <i class="fas fa-chevron-circle-left"></i>
                 </div>
             </div>
-        </div>
-    </section>
 
-</main>
+            <div class="div-description">
+                <h1>{{ product.name }}</h1>
+                <div class="description">
+                    {{ product.description|raw }}
+                </div>
+                <!-- <audio controls src="https://www.fesliyanstudios.com/play-mp3/768">
+                    </audio> -->
+                <a href="" class="read-more">Voir les détails</a>
+                <p class="price">Price</p>
+                <h2>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</h2>
+                <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-dark add-cart">Ajouter au
+                    panier</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

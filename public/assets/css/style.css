@@ -8,6 +8,7 @@
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .container {
@@ -48,7 +49,6 @@ select {
   display: inline-block;
   padding: 20px 50px;
   border-radius: 15px;
-  text-decoration: none;
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
@@ -77,6 +77,12 @@ select {
 .alert-info {
   background-color: rgb(49, 128, 255);
   color: white;
+}
+
+@media all and (min-width: 1800px) {
+  .container {
+    max-width: 1500px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

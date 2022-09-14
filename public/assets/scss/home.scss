@@ -1,3 +1,13 @@
+h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
 .slider {
   position: relative;
   height: 100vh;
@@ -10,7 +20,7 @@
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity .3s;
+    transition: opacity 1s;
   }
 
   img.active {
@@ -28,27 +38,21 @@
   }
 
   #next {
-    right: 1rem;
+    right: 2rem;
   }
 
   #prev {
-    left: 1rem;
+    left: 2rem;
   }
 }
 
 .product-section {
   padding: 4rem 0;
 
-  h2 {
-    margin-bottom: 4rem;
-    text-align: center;
-    font-size: 2rem;
-  }
-
   .cards {
+    margin-top: 4rem;
     display: flex;
     flex-wrap: wrap;
-  
 
     .card {
       margin: 0 10px;
@@ -58,11 +62,6 @@
         text-align: center;
         color: #2D2D2D;
 
-        h3 {
-          font-size: 1.3rem;
-          font-weight: 600;
-        }
-
         img {
           width: 100%;
           height: auto;
@@ -71,32 +70,91 @@
       }
     }
   }
+
+  h2 {
+    color: #3E3E3E;
+  }
+
 }
 
-.keycaps-section {
+.category-section {
   padding: 4rem 0;
-  text-align: center;
   color: #fff;
+  text-align: center;
   background-color: #3E3E3E;
 
-  .title {
-    display: flex;
-    justify-content: center;
+
+  .title-category {
+    font-size: 2rem;
+    font-weight: 500;
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 -2px rgba(255, 255, 255, 0.224) inset;
 
     .margin-right {
       margin-right: 5rem
     }
+
+    #switch-btn {
+      opacity: .7;
+
+    }
+
+    #switch-bar {
+      margin-top: 1rem;
+      height: 3px;
+      background-color: white;
+      transition: all .5s ease;
+    }
   }
 
-  p {
-    margin-top: 1rem;
+  .category-desc {
+    margin: 2rem 0;
   }
+
+  .slide {
+    display: none;
+  }
+
+  .cards {
+    margin-top: 4rem;
+    flex-wrap: wrap;
+    display: flex;
+
+    .card {
+      margin: 0 10px;
+      width: calc(20% - 20px);
+
+      a {
+        text-align: center;
+        color: white;
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 20px;
+        }
+      }
+    }
+
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  h2 {
+    color: white;
+  }
+
 }
 
 @media all and (max-device-width: 991.98px) {
   .product-section {
     .cards {
       row-gap: 20px;
+
       .card {
         width: calc(33% - 20px);
       }
@@ -108,6 +166,7 @@
   .product-section {
     .cards {
       row-gap: 20px;
+
       .card {
         width: calc(50% - 20px);
       }
@@ -119,6 +178,7 @@
   .product-section {
     .cards {
       row-gap: 20px;
+
       .card {
         width: calc(100% - 20px);
       }

@@ -12,12 +12,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ProductRepository $productRepository, ProductImageRepository $productImageRepository): Response
+    public function index(ProductRepository $productRepository): Response
     {
-        $productList = $productRepository->findFourClavierByAsc(['active' => 1]);
+        $productList = $productRepository->findFourClavierByDesc();
+        $keycapsList = $productRepository->findFourKeycapsByDesc();
+        $switchList = $productRepository->findFourSwitchByDesc();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'productList' => $productList,
+            'keycapsList' => $keycapsList,
+            'switchList' => $switchList,
         ]);
     }
 }

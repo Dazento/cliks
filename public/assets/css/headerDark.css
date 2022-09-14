@@ -1,11 +1,11 @@
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   transition: 0.6s;
   z-index: 1;
-  padding: 1.5rem 0;
+  padding: calc(1.5rem + 5px) 0;
   background-color: #3E3E3E;
 }
 header .logo {
@@ -20,6 +20,10 @@ header .logo h1 {
   font-size: 2rem;
 }
 header a {
+  color: white;
+  font-weight: 500;
+}
+header li {
   color: white;
   font-weight: 500;
 }
@@ -59,6 +63,28 @@ header nav .nav-icon li {
 }
 header nav .nav-icon i {
   font-size: 1.3rem;
+}
+header nav .nav-icon .user-icon {
+  cursor: pointer;
+}
+header nav .nav-icon .user-icon:hover ul {
+  display: flex;
+}
+header nav .nav-icon .user-icon:focus-within ul {
+  display: flex;
+}
+header nav .nav-icon .user-icon ul {
+  position: absolute;
+  width: fit-content;
+  display: none;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 20px;
+  transform: translateX(-45%);
+}
+header nav .nav-icon .user-icon ul a {
+  margin: 0.5rem;
 }
 header nav #burger-menu {
   display: none;

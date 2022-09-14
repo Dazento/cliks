@@ -62,6 +62,7 @@ class Product
     {
         $this->productImages = new ArrayCollection();
         $this->orderedProducts = new ArrayCollection();
+        $this->modifiedAt = new \DateTimeImmutable();
         $this->createdAt = new \DateTimeImmutable();
     }
 

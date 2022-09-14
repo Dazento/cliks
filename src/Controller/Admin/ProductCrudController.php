@@ -34,6 +34,10 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('slug'),
             BooleanField::new('active')->setValue('1'),
             ImageField::new('mainImage')
+                ->onlyOnIndex()
+                ->setBasePath("/assets/img/product/mainImg"),
+            ImageField::new('mainImage')
+                ->onlyOnForms()
                 ->setUploadDir("public/assets/img/product/mainImg")
                 ->setBasePath("/assets")
                 ->setRequired(false)

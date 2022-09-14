@@ -13,6 +13,11 @@
     <div class="container">
         <h1>Contact</h1>
         {{ form_start(contactForm) }}
+        {{ form_row(contactForm.firstname) }}
+        {{ form_row(contactForm.lastname) }}
+        {{ form_row(contactForm.email) }}
+        {{ form_row(contactForm.subject) }}
+        {{ form_row(contactForm.message) }}
         <button class="btn btn-dark" type="submit" class="btn btn-secondary">Envoyer</button>
         {{ form_end(contactForm) }}
     </div>

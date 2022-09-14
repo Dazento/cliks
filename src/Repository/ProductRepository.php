@@ -42,13 +42,43 @@ class ProductRepository extends ServiceEntityRepository
     /**
      * @return Product[] Returns an array of Product objects
      */
-    public function findFourClavierByAsc(): array
+    public function findFourClavierByDesc(): array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.active = 1')
             ->andWhere('p.category = 5')
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('p.id', 'DESC')
             ->setMaxResults(4)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Product[] Returns an array of Product objects
+     */
+    public function findFourKeycapsByDesc(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.active = 1')
+            ->andWhere('p.category = 3')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Product[] Returns an array of Product objects
+     */
+    public function findFourSwitchByDesc(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.active = 1')
+            ->andWhere('p.category = 1')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult()
         ;

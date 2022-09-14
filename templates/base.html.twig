@@ -56,18 +56,32 @@
                     {% if app.user %}
                     <li><a href="{{ path('profile_index') }}"><i class="fa-solid fa-user"></i></a></li>
                     {% else %}
-                    <li><a href="{{ path('app_login') }}"><i class="fa-solid fa-user"></i></a></li>
+                    <li class="user-icon"><i class="fa-solid fa-user"></i>
+                        <ul>
+                            <a href="{{ path('app_login') }}" class="btn btn-dark">Se connecter</a>
+                            <a href="{{ path('app_register') }}" class="btn btn-dark">S'inscrire</a>
+                        </ul>
+                    </li>
                     {% endif %}
-                    {% if app.user %}
                     <li><a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                    {% else %}
-                    <li><a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                    {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
-    {% block body %}{% endblock %}
+
+    <main class="{{ app.request.attributes.get('_route') != 'app_home' ? 'main-top' }}">
+        {# read and display all flash messages #}
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert-{{ label }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% block body %}{% endblock %}
+    </main>
+
+
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/a85a826387.js" crossorigin="anonymous"></script>
     <!-- Main JS -->

@@ -1,3 +1,13 @@
+h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
 .slider {
   position: relative;
   height: 100vh;
@@ -10,7 +20,7 @@
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 1s;
 }
 .slider img.active {
   opacity: 1;
@@ -25,21 +35,17 @@
   cursor: pointer;
 }
 .slider #next {
-  right: 1rem;
+  right: 2rem;
 }
 .slider #prev {
-  left: 1rem;
+  left: 2rem;
 }
 
 .product-section {
   padding: 4rem 0;
 }
-.product-section h2 {
-  margin-bottom: 4rem;
-  text-align: center;
-  font-size: 2rem;
-}
 .product-section .cards {
+  margin-top: 4rem;
   display: flex;
   flex-wrap: wrap;
 }
@@ -51,31 +57,70 @@
   text-align: center;
   color: #2D2D2D;
 }
-.product-section .cards .card a h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-}
 .product-section .cards .card a img {
   width: 100%;
   height: auto;
   border-radius: 20px;
 }
+.product-section h2 {
+  color: #3E3E3E;
+}
 
-.keycaps-section {
+.category-section {
   padding: 4rem 0;
-  text-align: center;
   color: #fff;
+  text-align: center;
   background-color: #3E3E3E;
 }
-.keycaps-section .title {
-  display: flex;
-  justify-content: center;
+.category-section .title-category {
+  font-size: 2rem;
+  font-weight: 500;
+  max-width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 -2px rgba(255, 255, 255, 0.224) inset;
 }
-.keycaps-section .title .margin-right {
+.category-section .title-category .margin-right {
   margin-right: 5rem;
 }
-.keycaps-section p {
+.category-section .title-category #switch-btn {
+  opacity: 0.7;
+}
+.category-section .title-category #switch-bar {
   margin-top: 1rem;
+  height: 3px;
+  background-color: white;
+  transition: all 0.5s ease;
+}
+.category-section .category-desc {
+  margin: 2rem 0;
+}
+.category-section .slide {
+  display: none;
+}
+.category-section .cards {
+  margin-top: 4rem;
+  flex-wrap: wrap;
+  display: flex;
+}
+.category-section .cards .card {
+  margin: 0 10px;
+  width: calc(20% - 20px);
+}
+.category-section .cards .card a {
+  text-align: center;
+  color: white;
+}
+.category-section .cards .card a img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+.category-section .slide.active {
+  display: block;
+}
+.category-section h2 {
+  color: white;
 }
 
 @media all and (max-device-width: 991.98px) {

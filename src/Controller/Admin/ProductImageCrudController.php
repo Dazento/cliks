@@ -20,6 +20,10 @@ class ProductImageCrudController extends AbstractCrudController
     {
         return [
             ImageField::new('image')
+                ->onlyOnIndex()
+                ->setBasePath("/uploads/product"),
+            ImageField::new('image')
+                ->onlyOnForms()
                 ->setUploadDir("public/uploads/product")
                 ->setBasePath("/uploads")
                 ->setRequired(false)
@@ -29,5 +33,4 @@ class ProductImageCrudController extends AbstractCrudController
                 ->setFormTypeOption('choice_label','name'),
         ];
     }
-
 }

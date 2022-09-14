@@ -26,6 +26,12 @@ header {
     font-weight: 500;
   }
 
+  li {
+    color: white;
+    font-weight: 500;
+  }
+
+
   nav {
     display: flex;
     align-items: center;
@@ -48,13 +54,16 @@ header {
       li {
         margin-left: 50px;
       }
+
       a {
         padding: 5px;
         font-size: 1.2rem;
       }
+
       a.active {
         border-bottom: solid 2px white;
       }
+
       a:hover {
         border-bottom: solid 2px white;
       }
@@ -71,6 +80,32 @@ header {
 
       i {
         font-size: 1.3rem;
+      }
+
+      .user-icon {
+        cursor: pointer;
+        &:hover ul {
+          display: flex;
+        }
+
+        &:focus-within ul {
+          display: flex;
+        }
+
+        ul {
+          position: absolute;
+          width: fit-content;
+          display: none;
+          flex-direction: column;
+          padding: 1rem;
+          background-color: white;
+          border-radius: 20px;
+          transform: translateX(-45%);
+
+          a {
+            margin: .5rem;
+          }
+        }
       }
     }
 
@@ -153,9 +188,11 @@ header {
           margin: 20px 0;
           font-size: 1.8rem;
           font-weight: 600;
+
           a {
             color: #3E3E3E;
           }
+
           a.active {
             border-bottom: solid 3px #3E3E3E;
           }

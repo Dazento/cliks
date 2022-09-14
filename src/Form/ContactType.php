@@ -17,11 +17,13 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
+                'label' => 'Prénom',
                 'attr' => [
                     'maxLength' => 50,
                 ]
             ])
             ->add('lastname', TextType::class, [
+                'label' => 'Nom',
                 'attr' => [
                     'maxLength' => 50,
                 ]
@@ -32,6 +34,7 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('subject', ChoiceType::class, [
+                'label' => 'Sujet',
                 'choices' => [
                     '-- sélectionner --' => '',
                     'signaler un bug' => 'bug',

@@ -8,24 +8,22 @@
 {% endblock %}
 
 {% block body %}
-<main>
-    <section class="products-section">
-        <div class="product-banner">
-            <h1>Produits</h1>
-        </div>
-        <div class="container">
-            <div class="products">
-                {% for product in productList %}
-                <div class="product">
-                    <a href="/produits/{{ product.slug }}">
-                        <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Image clavier">
-                        <h3>{{ product.name }}</h3>
-                        <p>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
-                    </a>
-                </div>
-                {% endfor %}
+<section class="products-section">
+    <div class="product-banner">
+        <h1>Produits</h1>
+    </div>
+    <div class="container">
+        <div class="products">
+            {% for product in productList %}
+            <div class="product">
+                <a href="/produits/{{ product.slug }}">
+                    <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Image clavier">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
+                </a>
             </div>
+            {% endfor %}
         </div>
-    </section>
-</main>
+    </div>
+</section>
 {% endblock %}
