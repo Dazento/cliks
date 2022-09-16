@@ -10,7 +10,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
     <!-- globals CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- header CSS -->
@@ -37,7 +36,7 @@
             <div class="nav-left">
                 <a href="{{ path('app_home') }}" class="logo">
                     <i class="bi bi-circle-fill"></i>
-                    <h1>Cliks</h1>
+                    <span>Cliks</span>
                 </a>
                 <ul id="nav-links">
                     <li><a class="link" href="{{ path('app_home') }}">Accueil</a></li>
@@ -58,12 +57,17 @@
                     {% else %}
                     <li class="user-icon"><i class="fa-solid fa-user"></i>
                         <ul>
-                            <a href="{{ path('app_login') }}" class="btn btn-dark">Se connecter</a>
-                            <a href="{{ path('app_register') }}" class="btn btn-dark">S'inscrire</a>
+                            <a href="{{ path('app_login') }}" class="btn-sm btn-dark">Se connecter</a>
+                            <a href="{{ path('app_register') }}" class="btn-sm btn-dark">S'inscrire</a>
                         </ul>
                     </li>
                     {% endif %}
-                    <li><a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <li class="cart-icon"><a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i>
+                            {% if app.session.get('cart') is not empty %}
+                            <span class="cart-badge">{{
+                                render(controller('App\\Controller\\CartController::getNbProducts')) }}</span>
+                            {% endif %}
+                        </a></li>
                 </ul>
             </div>
         </nav>
@@ -73,8 +77,10 @@
         {# read and display all flash messages #}
         {% for label, messages in app.flashes %}
         {% for message in messages %}
-        <div class="alert-{{ label }}">
-            {{ message }}
+        <div class="container">
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
         </div>
         {% endfor %}
         {% endfor %}

@@ -3,89 +3,63 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Repository\ProductRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\CartService;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/cart', name: 'cart')]
 class CartController extends AbstractController
 {
     #[Route('/', name: '_index')]
-    public function index(SessionInterface $session, ProductRepository $productRepository): Response
+    public function index(CartService $cartService): Response
     {
-
-        $cart = $session->get('cart', []);
-
-        $cartData = [];
-        $total = 0;
-
-        foreach ($cart as $id => $quantity) {
-            $product = $productRepository->find($id);
-            $cartData[] = [
-                "product" => $product,
-                "quantity" => $quantity,
-            ];
-
-            $total += $product->getPrice() * $quantity;
-        };
-
         return $this->render('cart/index.html.twig', [
-            'cartData' => $cartData,
-            'total' => $total,
+            'cartData' => $cartService->getCart(),
+            'total' => $cartService->getTotal(),
         ]);
     }
 
     #[Route('/add/{id}', name: '_add')]
-    public function add(Product $product, SessionInterface $session): Response
+    public function add(CartService $cartService, int $id): Response
     {
-        $cart = $session->get('cart', []);
-        $id = $product->getId();
-
-        if (!empty($cart[$id])) {
-            $cart[$id]++;
-        } else {
-            $cart[$id] = 1;
-        }
-
-        $session->set('cart', $cart);
-
+        $cartService->add($id);
         return $this->redirectToRoute("cart_index");
     }
 
     #[Route('/remove/{id}', name: '_remove')]
-    public function remove(Product $product, SessionInterface $session): Response
+    public function remove(CartService $cartService, int $id): Response
     {
-        $cart = $session->get('cart', []);
-        $id = $product->getId();
-
-        if (!empty($cart[$id])) {
-            if ($cart[$id] > 1) {
-                $cart[$id]--;
-            } else {
-                unset($cart[$id]);
-            }
-        }
-
-        $session->set('cart', $cart);
-
+        $cartService->remove($id);
         return $this->redirectToRoute("cart_index");
     }
 
     #[Route('/delete/{id}', name: '_delete')]
-    public function delete(Product $product, SessionInterface $session): Response
+    public function delete(CartService $cartService, int $id): Response
     {
-        $cart = $session->get('cart', []);
-        $id = $product->getId();
-
-        if (!empty($cart[$id])) {
-            unset($cart[$id]);
-        }
-
-        $session->set('cart', $cart);
-
+        $cartService->delete($id);
         return $this->redirectToRoute("cart_index");
+    }
+
+    #[Route('/clear', name: '_clear')]
+    public function clear(CartService $cartService, int $id): Response
+    {
+        $cartService->clear();
+        return $this->redirectToRoute("cart_index");
+    }
+
+    public function getNbProducts(CartService $cartService): Response
+    {
+        return $this->render('cart/nbProducts.html.twig', [
+            'nbProducts' => $cartService->getNbProducts(),
+        ]);
+    }
+    
+    #[Route('/validation', name: '_validation')]
+    public function validation(Request $request, CartService $cartService, ManagerRegistry $registry): Response
+    {
+        
     }
 }

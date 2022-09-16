@@ -1,7 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Compte{% endblock %}
+
+{% block stylesheets %}
+<!-- profile CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Profile</h1>
+<div class="container">
+    <h1>Mon compte</h1>
+</div>
+
+<section class="order">
+    <div class="container">
+        <h2>Commandes</h2>
+    </div>
+</section>
+
+<section class="adress">
+    <div class="container">
+        <h2>Adresses</h2>
+        <a href="{{ path('profile_adress_add') }}" class="add-adress">Ajouter une adresse</a>
+    </div>
+</section>
 {% endblock %}

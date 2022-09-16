@@ -44,8 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
 
-
-
     public function __construct()
     {
         $this->userAdresses = new ArrayCollection();
