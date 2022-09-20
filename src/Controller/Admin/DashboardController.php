@@ -2,11 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Order;
+use App\Entity\OrderDetail;
 use App\Entity\Product;
 use App\Entity\ProductCategory;
 use App\Entity\ProductImage;
 use App\Entity\ProductStatus;
 use App\Entity\User;
+use App\Entity\UserAdress;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -62,7 +65,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Voir les Catégories', 'fas fa-eye', ProductCategory::class),
         ]);
 
-        yield MenuItem::subMenu('Images', 'fas fa-list')->setSubItems([
+        yield MenuItem::subMenu('Images', 'fas fa-images')->setSubItems([
             MenuItem::linkToCrud('Ajouter une image', 'fas fa-plus', ProductImage::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les images', 'fas fa-eye', ProductImage::class),
         ]);
@@ -74,6 +77,26 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Utilisateurs');
 
-        yield MenuItem::linkToCrud('User', 'fa fa-user', User::class);
+        yield MenuItem::subMenu('Utilisateurs', 'fa fa-user')->setSubItems([
+            MenuItem::linkToCrud('Créer un user', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les users', 'fas fa-eye', User::class),
+        ]);
+
+        yield MenuItem::subMenu('AdresseUtilisateurs', 'fa fa-location-dot')->setSubItems([
+            MenuItem::linkToCrud('Créer une adresse', 'fas fa-plus', UserAdress::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les adresses', 'fas fa-eye', UserAdress::class),
+        ]);
+
+        yield MenuItem::section('Commandes');
+
+        yield MenuItem::subMenu('Commandes', 'fa fa-truck')->setSubItems([
+            MenuItem::linkToCrud('Créer une commande', 'fas fa-plus', Order::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les commandes', 'fas fa-eye', Order::class),
+        ]);
+
+        yield MenuItem::subMenu('Détails', 'fa fa-list')->setSubItems([
+            MenuItem::linkToCrud('Créer une details', 'fas fa-plus', OrderDetail::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les details', 'fas fa-eye', OrderDetail::class),
+        ]);
     }
 }

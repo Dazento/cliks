@@ -50,6 +50,7 @@ h2 {
   padding: 4rem 0;
 
   .cards {
+    width: 100%;
     margin-top: 4rem;
     display: flex;
     flex-wrap: wrap;
@@ -165,8 +166,6 @@ h2 {
 @media all and (max-device-width: 768.98px) {
   .product-section {
     .cards {
-      row-gap: 20px;
-
       .card {
         width: calc(50% - 20px);
       }
@@ -177,8 +176,6 @@ h2 {
 @media all and (max-device-width: 575.98px) {
   .product-section {
     .cards {
-      row-gap: 20px;
-
       .card {
         width: calc(100% - 20px);
       }

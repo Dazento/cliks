@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Entity\Trait\CreatedAtTrait;
-use App\Repository\OrderRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
+use App\Entity\OrderDetail;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderRepository;
+use App\Entity\Trait\CreatedAtTrait;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -40,10 +40,13 @@ class Order
     #[ORM\Column]
     private ?bool $paid = null;
 
+    #[ORM\OneToMany(mappedBy: 'orderid', targetEntity: OrderDetail::class, orphanRemoval: true)]
+    private Collection $orderDetails;
+
 
     public function __construct()
     {
-        $this->orderDetail = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -88,7 +91,7 @@ class Order
     {
         if (!$this->orderDetails->contains($orderDetail)) {
             $this->orderDetails->add($orderDetail);
-            $orderDetail->addOrderid($this);
+            $orderDetail->setOrderid($this);
         }
 
         return $this;
@@ -97,20 +100,8 @@ class Order
     public function removeOrderDetail(OrderDetail $orderDetail): self
     {
         if ($this->orderDetails->removeElement($orderDetail)) {
-            $orderDetail->removeOrderid($this);
+            $orderDetail->setOrderid(null);
         }
-
-        return $this;
-    }
-
-    public function getOrderDetail(): ?OrderDetail
-    {
-        return $this->orderDetail;
-    }
-
-    public function setOrderDetail(?OrderDetail $orderDetail): self
-    {
-        $this->orderDetail = $orderDetail;
 
         return $this;
     }

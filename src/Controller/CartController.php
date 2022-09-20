@@ -62,6 +62,7 @@ class CartController extends AbstractController
     #[Route('/validation', name: '_validation')]
     public function validation(Request $request, CartService $cartService, ManagerRegistry $registry): Response
     {
+        // if cart n'est pas vide
         $cartValidationForm = $this->createForm(CartValidationType::class);
         $cartValidationForm->handleRequest($request);
 

@@ -114,14 +114,14 @@ header {
       }
 
       .cart-icon {
-        position: relative;
+        position: relative;;
 
         .cart-badge {
+          position: absolute;
           padding: 2px 6px;
           background-color: white;
           color: #3E3E3E;
           border-radius: 50px;
-          position: absolute;
           top: -15px;
           left: 15px;
           font-size: .8rem;

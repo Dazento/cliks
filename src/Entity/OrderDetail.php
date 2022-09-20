@@ -15,22 +15,16 @@ class OrderDetail
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'OrderDetails')]
+    #[ORM\ManyToOne(inversedBy: 'orderDetails')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
-    #[ORM\OneToMany(mappedBy: 'OrderDetail', targetEntity: Order::class)]
-    private Collection $Orderid;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'orderDetails')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Order $orderid = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
-
-    public function __construct()
-    {
-        $this->Orderid = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -52,31 +46,9 @@ class OrderDetail
     /**
      * @return Collection<int, Order>
      */
-    public function getOrderid(): Collection
+    public function getOrderid(): ?Order
     {
-        return $this->Orderid;
-    }
-
-    public function addOrderid(Order $orderid): self
-    {
-        if (!$this->Orderid->contains($orderid)) {
-            $this->Orderid->add($orderid);
-            $orderid->setOrderDetail($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrderid(Order $orderid): self
-    {
-        if ($this->Orderid->removeElement($orderid)) {
-            // set the owning side to null (unless already changed)
-            if ($orderid->getOrderDetail() === $this) {
-                $orderid->setOrderDetail(null);
-            }
-        }
-
-        return $this;
+        return $this->orderid;
     }
 
     public function setOrderid(?Order $orderid): self

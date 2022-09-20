@@ -49,7 +49,7 @@ class Product
     private Collection $productImages;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]
-    private Collection $orderDetail;
+    private Collection $orderDetails;
 
     #[ORM\Column]
     private ?bool $active = null;
@@ -61,7 +61,7 @@ class Product
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
-        $this->orderDetail = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
         $this->modifiedAt = new \DateTimeImmutable();
         $this->createdAt = new \DateTimeImmutable();
     }
@@ -201,16 +201,16 @@ class Product
     /**
      * @return Collection<int, OrderDetail>
      */
-    public function getOrderDetail(): Collection
+    public function getOrderDetails(): Collection
     {
-        return $this->orderDetail;
+        return $this->orderDetails;
     }
 
     public function addOrderDetail(OrderDetail $orderDetail): self
     {
-        if (!$this->orderDetail->contains($orderDetail)) {
-            $this->orderDetail->add($orderDetail);
-            $orderDetail->addProduct($this);
+        if (!$this->orderDetails->contains($orderDetail)) {
+            $this->orderDetails->add($orderDetail);
+            $orderDetail->setProduct($this);
         }
 
         return $this;
@@ -219,7 +219,9 @@ class Product
     public function removeOrderDetail(OrderDetail $orderDetail): self
     {
         if ($this->orderDetail->removeElement($orderDetail)) {
-            $orderDetail->removeProduct($this);
+            if ($orderDetail->getProduct() === $this) {
+            	$orderDetail->setProduct(null);
+            }
         }
 
         return $this;
