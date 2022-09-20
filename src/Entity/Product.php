@@ -48,8 +48,8 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, orphanRemoval: true)]
     private Collection $productImages;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderedProduct::class)]
-    private Collection $orderedProducts;
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderDetail::class)]
+    private Collection $orderDetail;
 
     #[ORM\Column]
     private ?bool $active = null;
@@ -61,7 +61,7 @@ class Product
     public function __construct()
     {
         $this->productImages = new ArrayCollection();
-        $this->orderedProducts = new ArrayCollection();
+        $this->orderDetail = new ArrayCollection();
         $this->modifiedAt = new \DateTimeImmutable();
         $this->createdAt = new \DateTimeImmutable();
     }
@@ -199,27 +199,27 @@ class Product
     }
 
     /**
-     * @return Collection<int, OrderedProduct>
+     * @return Collection<int, OrderDetail>
      */
-    public function getOrderedProducts(): Collection
+    public function getOrderDetail(): Collection
     {
-        return $this->orderedProducts;
+        return $this->orderDetail;
     }
 
-    public function addOrderedProduct(OrderedProduct $orderedProduct): self
+    public function addOrderDetail(OrderDetail $orderDetail): self
     {
-        if (!$this->orderedProducts->contains($orderedProduct)) {
-            $this->orderedProducts->add($orderedProduct);
-            $orderedProduct->addProduct($this);
+        if (!$this->orderDetail->contains($orderDetail)) {
+            $this->orderDetail->add($orderDetail);
+            $orderDetail->addProduct($this);
         }
 
         return $this;
     }
 
-    public function removeOrderedProduct(OrderedProduct $orderedProduct): self
+    public function removeOrderDetail(OrderDetail $orderDetail): self
     {
-        if ($this->orderedProducts->removeElement($orderedProduct)) {
-            $orderedProduct->removeProduct($this);
+        if ($this->orderDetail->removeElement($orderDetail)) {
+            $orderDetail->removeProduct($this);
         }
 
         return $this;
@@ -248,5 +248,4 @@ class Product
 
         return $this;
     }
-
 }

@@ -8,5 +8,12 @@
 {% endblock %}
 
 {% block javascripts %}
-    
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    var stripe = Stripe('pk_test_51LiZ90BSrW2wktTs3Z6wQupTm7ZAmFTZUibXIE2ypaS9rz8TEERtzHSaiiwWdBQvznfFRmmqLRr9YcZFyCVZG9Uh00yKy4tSBy'); // initialise Stripe
+    stripe.redirectToCheckout({
+        sessionId: '{{ sessionId }}'
+    })
+</script>
 {% endblock %}

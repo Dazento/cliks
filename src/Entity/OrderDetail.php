@@ -2,23 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderedProductRepository;
+use App\Repository\OrderDetailRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrderedProductRepository::class)]
-class OrderedProduct
+#[ORM\Entity(repositoryClass: OrderDetailRepository::class)]
+class OrderDetail
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orderedProducts')]
+    #[ORM\ManyToOne(inversedBy: 'OrderDetails')]
     private ?Product $product = null;
 
-    #[ORM\OneToMany(mappedBy: 'orderedProduct', targetEntity: Order::class)]
+    #[ORM\OneToMany(mappedBy: 'OrderDetail', targetEntity: Order::class)]
     private Collection $Orderid;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
@@ -61,7 +61,7 @@ class OrderedProduct
     {
         if (!$this->Orderid->contains($orderid)) {
             $this->Orderid->add($orderid);
-            $orderid->setOrderedProduct($this);
+            $orderid->setOrderDetail($this);
         }
 
         return $this;
@@ -71,8 +71,8 @@ class OrderedProduct
     {
         if ($this->Orderid->removeElement($orderid)) {
             // set the owning side to null (unless already changed)
-            if ($orderid->getOrderedProduct() === $this) {
-                $orderid->setOrderedProduct(null);
+            if ($orderid->getOrderDetail() === $this) {
+                $orderid->setOrderDetail(null);
             }
         }
 

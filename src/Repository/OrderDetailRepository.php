@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\OrderedProduct;
+use App\Entity\OrderDetail;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<OrderedProduct>
+ * @extends ServiceEntityRepository<OrderDetail>
  *
- * @method OrderedProduct|null find($id, $lockMode = null, $lockVersion = null)
- * @method OrderedProduct|null findOneBy(array $criteria, array $orderBy = null)
- * @method OrderedProduct[]    findAll()
- * @method OrderedProduct[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method OrderDetail|null find($id, $lockMode = null, $lockVersion = null)
+ * @method OrderDetail|null findOneBy(array $criteria, array $orderBy = null)
+ * @method OrderDetail[]    findAll()
+ * @method OrderDetail[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OrderedProductRepository extends ServiceEntityRepository
+class OrderDetailRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OrderedProduct::class);
+        parent::__construct($registry, OrderDetail::class);
     }
 
-    public function add(OrderedProduct $entity, bool $flush = false): void
+    public function add(OrderDetail $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class OrderedProductRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(OrderedProduct $entity, bool $flush = false): void
+    public function remove(OrderDetail $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class OrderedProductRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return OrderedProduct[] Returns an array of OrderedProduct objects
+//     * @return OrderDetail[] Returns an array of OrderDetail objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class OrderedProductRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?OrderedProduct
+//    public function findOneBySomeField($value): ?OrderDetail
 //    {
 //        return $this->createQueryBuilder('o')
 //            ->andWhere('o.exampleField = :val')

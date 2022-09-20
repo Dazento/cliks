@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Product;
+use App\Entity\Order;
+use App\Entity\OrderDetail;
 use App\Service\CartService;
+use App\Form\CartValidationType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,10 +58,49 @@ class CartController extends AbstractController
             'nbProducts' => $cartService->getNbProducts(),
         ]);
     }
-    
+
     #[Route('/validation', name: '_validation')]
     public function validation(Request $request, CartService $cartService, ManagerRegistry $registry): Response
     {
-        
+        $cartValidationForm = $this->createForm(CartValidationType::class);
+        $cartValidationForm->handleRequest($request);
+
+        if ($cartValidationForm->isSubmitted() && $cartValidationForm->isValid()) {
+
+            $manager = $registry->getManager();
+            $order = new Order();
+            $order
+                ->setUser($this->getUser())
+                ->setDeliveryAdress($cartValidationForm['deliveryAdress']->getData())
+                ->setBillingAdress($cartValidationForm['billingAdress']->getData())
+                ->setReference('O' . date_format(new \DateTime(), 'Ymdhis'))
+                ->setAmount($cartService->getTotal())
+                ->setPaid(false)
+                ->setCreatedAt(new \DateTimeImmutable());
+
+            $manager->persist($order);
+
+            foreach ($cartService->getCart() as $cartElement) {
+                $orderDetail = new OrderDetail();
+                $orderDetail
+                    ->setOrderid($order)
+                    ->setProduct($cartElement['product'])
+                    ->setQuantity($cartElement['quantity']);
+
+                $manager->persist($orderDetail);
+            }
+
+            $manager->flush();
+
+            return $this->redirectToRoute('payment', [
+                'order' => $order->getId()
+            ]);
+        }
+
+        return $this->render('cart/validation.html.twig', [
+            'cartData' => $cartService->getCart(),
+            'total' => $cartService->getTotal(),
+            'cartValidationForm' => $cartValidationForm->createView(),
+        ]);
     }
 }

@@ -20,16 +20,30 @@ class Order
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $number = null;
+    #[ORM\Column(length: 100)]
+    private ?string $reference = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?UserAdress $deliveryAdress = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?UserAdress $billingAdress = null;
+
+    #[ORM\Column]
+    private ?int $Amount = null;
+
+    #[ORM\Column]
+    private ?bool $paid = null;
+
 
     public function __construct()
     {
-        $this->orderedProducts = new ArrayCollection();
+        $this->orderDetail = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -38,14 +52,14 @@ class Order
         return $this->id;
     }
 
-    public function getNumber(): ?int
+    public function getReference(): ?string
     {
-        return $this->number;
+        return $this->reference;
     }
 
-    public function setNumber(int $number): self
+    public function setReference(string $reference): self
     {
-        $this->number = $number;
+        $this->reference = $reference;
 
         return $this;
     }
@@ -63,40 +77,88 @@ class Order
     }
 
     /**
-     * @return Collection<int, OrderedProduct>
+     * @return Collection<int, OrderDetail>
      */
-    public function getOrderedProducts(): Collection
+    public function getOrderDetails(): Collection
     {
-        return $this->orderedProducts;
+        return $this->orderDetails;
     }
 
-    public function addOrderedProduct(OrderedProduct $orderedProduct): self
+    public function addOrderDetail(OrderDetail $orderDetail): self
     {
-        if (!$this->orderedProducts->contains($orderedProduct)) {
-            $this->orderedProducts->add($orderedProduct);
-            $orderedProduct->addOrderid($this);
+        if (!$this->orderDetails->contains($orderDetail)) {
+            $this->orderDetails->add($orderDetail);
+            $orderDetail->addOrderid($this);
         }
 
         return $this;
     }
 
-    public function removeOrderedProduct(OrderedProduct $orderedProduct): self
+    public function removeOrderDetail(OrderDetail $orderDetail): self
     {
-        if ($this->orderedProducts->removeElement($orderedProduct)) {
-            $orderedProduct->removeOrderid($this);
+        if ($this->orderDetails->removeElement($orderDetail)) {
+            $orderDetail->removeOrderid($this);
         }
 
         return $this;
     }
 
-    public function getOrderedProduct(): ?OrderedProduct
+    public function getOrderDetail(): ?OrderDetail
     {
-        return $this->orderedProduct;
+        return $this->orderDetail;
     }
 
-    public function setOrderedProduct(?OrderedProduct $orderedProduct): self
+    public function setOrderDetail(?OrderDetail $orderDetail): self
     {
-        $this->orderedProduct = $orderedProduct;
+        $this->orderDetail = $orderDetail;
+
+        return $this;
+    }
+
+    public function getDeliveryAdress(): ?UserAdress
+    {
+        return $this->deliveryAdress;
+    }
+
+    public function setDeliveryAdress(?UserAdress $deliveryAdress): self
+    {
+        $this->deliveryAdress = $deliveryAdress;
+
+        return $this;
+    }
+
+    public function getBillingAdress(): ?UserAdress
+    {
+        return $this->billingAdress;
+    }
+
+    public function setBillingAdress(?UserAdress $billingAdress): self
+    {
+        $this->billingAdress = $billingAdress;
+
+        return $this;
+    }
+
+    public function getAmount(): ?int
+    {
+        return $this->Amount;
+    }
+
+    public function setAmount(int $Amount): self
+    {
+        $this->Amount = $Amount;
+
+        return $this;
+    }
+
+    public function isPaid(): ?bool
+    {
+        return $this->paid;
+    }
+
+    public function setPaid(bool $paid): self
+    {
+        $this->paid = $paid;
 
         return $this;
     }
