@@ -75,12 +75,32 @@ header {
     }
 
     .nav-icon {
+      display: flex;
+      align-items: center;
       li {
         margin-left: 30px;
       }
 
       i {
         font-size: 1.3rem;
+      }
+
+      #search {
+        margin-left: 10px;
+        cursor: pointer;
+      }
+      .btn-search {
+        display: none;
+      }
+      input {
+        display: none;
+        margin: 0;
+        padding: 0 .5rem;
+        width: 100%;
+      }
+
+      input.active {
+        display: block;
       }
 
       .user-icon {
@@ -151,7 +171,7 @@ header {
     nav {
       #nav-links {
         li {
-          margin-left: 30px;
+          margin-left: 10px;
         }
       }
     }

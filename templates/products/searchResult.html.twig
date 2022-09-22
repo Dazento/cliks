@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductsController!{% endblock %}
+
+{% block stylesheets %}
+<!-- searchResult CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/searchResult.css') }}">
+{% endblock %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <h1>Recherche : {{ searchedValue }}</h1>
+        <div class="search-form">
+            {{ render(controller(
+            'App\\Controller\\ProductsController::searchBar'
+            )) }}
+        </div>
+        <div>
+            <div class="products">
+                {% for product in products %}
+                <div class="product">
+                    <a href="/produits/{{ product.slug }}">
+                        <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Image clavier">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
+                    </a>
+                </div>
+                {% else %}
+                <p>Aucun résultats</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

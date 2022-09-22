@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\UserAdress;
 use App\Form\UserAdressType;
+use App\Service\UserAdressService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,29 +24,10 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/adresse/add', name: '_adress_add')]
-    public function addAdress(Request $request, ManagerRegistry $managerRegistry): Response
+    public function addAdress(Request $request, ManagerRegistry $managerRegistry, UserAdressService $userService): Response
     {
-
-        $userAdress = new UserAdress();
-        $adressForm = $this->createForm(UserAdressType::class, $userAdress);
-        $adressForm->handleRequest($request);
-
-        if ($adressForm->isSubmitted() && $adressForm->isValid()) {
-            $manager = $managerRegistry->getManager();
-
-            $userAdress
-                ->setUser($this->getUser())
-                ->setAdressline($adressForm['adressline']->getData())
-                ->setCity($adressForm['city']->getData())
-                ->setZipcode($adressForm['zipcode']->getData())
-                ->setPhone($adressForm['phone']->getData());
-
-            $manager->persist($userAdress);
-            $manager->flush();
-
-            return $this->redirectToRoute('profile_index');
-        }
-
+        $adressForm = $userService->add();
+        
         return $this->render('profile/addAdress.html.twig', [
             'adressForm' => $adressForm->createView(),
         ]);

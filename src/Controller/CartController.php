@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\OrderDetail;
 use App\Service\CartService;
 use App\Form\CartValidationType;
+use App\Service\UserAdressService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,11 +61,13 @@ class CartController extends AbstractController
     }
 
     #[Route('/validation', name: '_validation')]
-    public function validation(Request $request, CartService $cartService, ManagerRegistry $registry): Response
+    public function validation(Request $request, CartService $cartService, ManagerRegistry $registry, UserAdressService $userService): Response
     {
         // if cart n'est pas vide
         $cartValidationForm = $this->createForm(CartValidationType::class);
         $cartValidationForm->handleRequest($request);
+
+        $adressForm = $userService->add();
 
         if ($cartValidationForm->isSubmitted() && $cartValidationForm->isValid()) {
 
@@ -102,6 +105,7 @@ class CartController extends AbstractController
             'cartData' => $cartService->getCart(),
             'total' => $cartService->getTotal(),
             'cartValidationForm' => $cartValidationForm->createView(),
+            'adressForm' => $adressForm->createView()
         ]);
     }
 }

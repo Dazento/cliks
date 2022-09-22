@@ -30,5 +30,4 @@ class UserCrudController extends AbstractCrudController
             DateTimeField::new('createdAt')->hideOnForm(),
         ];
     }
-
 }

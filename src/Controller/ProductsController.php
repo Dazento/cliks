@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Entity\ProductImage;
 use App\Repository\ProductImageRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,7 +25,7 @@ class ProductsController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}', name: '_product')]
+    #[Route('/show/{slug}', name: '_product')]
     public function product(Product $product, ProductImageRepository $productImageRepository): Response
     {
 
@@ -33,6 +34,38 @@ class ProductsController extends AbstractController
             'controller_name' => 'ProductsController',
             'product' => $product,
             'imageList' => $imageList
+        ]);
+    }
+
+    #[Route('/search', name: '_search')]
+    public function searchResult(RequestStack $requestStack, ProductRepository $productRepository): Response
+    {
+        $searchedValue = $requestStack->getCurrentRequest()->get('form')['search'];
+        if ($searchedValue) {
+            $products = $productRepository->search($searchedValue);
+        }
+
+        return $this->render('products/searchResult.html.twig', [
+            'searchedValue' => $searchedValue,
+            'products' => $products
+        ]);
+    }
+
+    public function searchBar(): Response
+    {
+        $searchForm = $this->createFormBuilder()
+            ->setAction($this->generateUrl('products_search'))
+            ->add('search', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'maxLength' => 50,
+                    'placeholder' => 'Recherche'
+                ]
+            ])
+            ->getForm();
+
+        return $this->render('products/searchForm.html.twig', [
+            'searchForm' => $searchForm->createView()
         ]);
     }
 }

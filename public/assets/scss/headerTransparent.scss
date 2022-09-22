@@ -32,7 +32,6 @@ header {
     font-weight: 500;
   }
 
-
   nav {
     display: flex;
     align-items: center;
@@ -83,6 +82,24 @@ header {
         font-size: 1.3rem;
       }
 
+      #search {
+        margin-left: 10px;
+        cursor: pointer;
+      }
+      .btn-search {
+        display: none;
+      }
+      input {
+        display: none;
+        margin: 0;
+        padding: 0 .5rem;
+        width: 100%;
+      }
+
+      input.active {
+        display: block;
+      }
+
       .user-icon {
         cursor: pointer;
         position: relative;
@@ -114,7 +131,8 @@ header {
       }
 
       .cart-icon {
-        position: relative;;
+        position: relative;
+        ;
 
         .cart-badge {
           position: absolute;

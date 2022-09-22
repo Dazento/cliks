@@ -18,7 +18,6 @@ class HomeController extends AbstractController
         $keycapsList = $productRepository->findFourKeycapsByDesc();
         $switchList = $productRepository->findFourSwitchByDesc();
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'productList' => $productList,
             'keycapsList' => $keycapsList,
             'switchList' => $switchList,

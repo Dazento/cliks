@@ -64,6 +64,22 @@ header nav .nav-icon li {
 header nav .nav-icon i {
   font-size: 1.3rem;
 }
+header nav .nav-icon #search {
+  margin-left: 10px;
+  cursor: pointer;
+}
+header nav .nav-icon .btn-search {
+  display: none;
+}
+header nav .nav-icon input {
+  display: none;
+  margin: 0;
+  padding: 0 0.5rem;
+  width: 100%;
+}
+header nav .nav-icon input.active {
+  display: block;
+}
 header nav .nav-icon .user-icon {
   cursor: pointer;
   position: relative;

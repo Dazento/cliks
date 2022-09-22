@@ -51,7 +51,10 @@
             </div>
             <div class="nav-right">
                 <ul class="nav-icon">
-                    <li><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    {{ render(controller(
+                        'App\\Controller\\ProductsController::searchBar'
+                    )) }}
+                    <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
                     {% if app.user %}
                     <li><a href="{{ path('profile_index') }}"><i class="fa-solid fa-user"></i></a></li>
                     {% else %}

@@ -6,6 +6,7 @@ use App\Entity\UserAdress;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserAdressCrudController extends AbstractCrudController
@@ -23,7 +24,7 @@ class UserAdressCrudController extends AbstractCrudController
             TextField::new('adressline'),
             TextField::new('zipcode'),
             TextField::new('city'),
-            TextField::new('phone'),
+            TelephoneField::new('phone'),
             AssociationField::new('user')
                 ->setFormTypeOption('choice_label', 'email')
         ];

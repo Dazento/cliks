@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,8 +41,6 @@ class ContactController extends AbstractController
                     $this->addFlash('succes', 'Votre message a bien été envoyé');
                     return $this->redirectToRoute('contact');
             }
-        } else {
-
         }
         return $this->render('contact/index.html.twig', [
             'contactForm' => $contactForm->createView()

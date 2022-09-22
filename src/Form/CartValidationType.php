@@ -33,7 +33,8 @@ class CartValidationType extends AbstractType
                 },
                 'choice_label' => function (UserAdress $userAdress) {
                     return $userAdress->getAdressline() . ' - ' . $userAdress->getZipcode() . ' ' . $userAdress->getCity();
-                }
+                },
+                'placeholder' => '-- sélectionner --'
             ])
             ->add('billingAdress', EntityType::class, [
                 'label' => 'Adresse de facturation',
@@ -45,7 +46,8 @@ class CartValidationType extends AbstractType
                 },
                 'choice_label' => function (UserAdress $userAdress) {
                     return $userAdress->getAdressline() . ' - ' . $userAdress->getZipcode() . ' ' . $userAdress->getCity();
-                }
+                },
+                'placeholder' => '-- sélectionner --'
             ]);
     }
 
