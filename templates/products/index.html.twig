@@ -16,7 +16,7 @@
         <div class="products">
             {% for product in productList %}
             <div class="product">
-                <a href="/produits/{{ product.slug }}">
+                <a href="/produits/show/{{ product.slug }}">
                     <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Image clavier">
                     <h3>{{ product.name }}</h3>
                     <p>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>

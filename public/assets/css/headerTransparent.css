@@ -101,6 +101,11 @@ header nav .nav-icon .user-icon ul {
   left: 50%;
   transform: translateX(-50%);
 }
+header nav .nav-icon .user-icon ul .link-loged {
+  color: #3E3E3E;
+  text-decoration: underline;
+  font-size: 0.8rem;
+}
 header nav .nav-icon .user-icon ul a {
   margin: 0.3rem;
   text-align: center;

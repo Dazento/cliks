@@ -1,12 +1,128 @@
 h1 {
-  margin: 2rem;
-  font-size: 2.5rem;
+  margin: 1.5rem;
+  font-size: 2rem;
   text-align: center;
   font-weight: 600;
 }
 
-.adress .add-adress {
+.account {
+  display: flex;
+  justify-content: space-between;
+}
+.account .order-section {
+  width: calc(50% - 1rem);
+}
+.account .order-section .orders {
+  margin: 1rem 0;
+}
+.account .order-section .orders .order {
+  margin: 1rem 0;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 20px;
+}
+.account .order-section .orders .order .ref {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+.account .order-section .orders .order .details {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 0 1rem;
+  font-size: 0.9rem;
+}
+.account .order-section .orders .order .details #date {
+  font-weight: 500;
+}
+.account .order-section .orders .order .order-detail {
+  border-top: 1px solid rgb(211, 211, 211);
+  display: none;
+  margin-top: 10px;
+}
+.account .order-section .orders .order .order-detail .product {
+  display: flex;
+  margin: 0.5rem 0;
+}
+.account .order-section .orders .order .order-detail .product img {
+  width: 100px;
+  height: auto;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+}
+.account .order-section .orders .order .order-detail .product .product-details {
+  width: 100%;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+  justify-content: space-between;
+  text-align: center;
+}
+.account .order-section .orders .order .order-detail .product .product-details .mt {
+  margin-top: 5px;
+}
+.account .order-section .orders .order .order-detail.active {
+  display: block;
+}
+.account .infos {
+  width: calc(50% - 1rem);
+}
+.account .infos .adress-title {
+  display: flex;
+  justify-content: space-between;
+}
+.account .infos .adress-title .add-adress {
   text-decoration: underline;
+  color: #3e3e3e;
+}
+.account .infos .adresses {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 1rem;
+}
+.account .infos .adresses .adress {
+  width: 32%;
+  border-radius: 20px;
+  border: 1px solid rgb(211, 211, 211);
+  padding: 1rem;
+}
+.account .infos .adresses .adress .adress-crud {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+}
+.account .infos .adresses .adress .adress-crud a {
+  text-decoration: underline;
+  color: #3e3e3e;
+  opacity: 0.6;
+}
+.account .infos .adresses .adress .adress-crud .delete {
+  margin-left: 0.5rem;
+}
+.account .info-section .info-detail {
+  margin: 1rem 0;
+}
+
+@media all and (max-device-width: 1199.98px) {
+  .account .infos .adresses .adress {
+    width: calc(50% - 0.5rem);
+  }
+}
+@media all and (max-device-width: 991.98px) {
+  .account {
+    flex-direction: column;
+  }
+  .account .order-section {
+    width: 100%;
+  }
+  .account .infos {
+    width: 100%;
+  }
+  .account .infos .adresses .adress {
+    width: calc(50% - 0.5rem);
+  }
 }
 
 /*# sourceMappingURL=profile.css.map */

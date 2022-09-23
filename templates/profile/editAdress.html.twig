@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une adresse{% endblock %}
+
+{% block stylesheets %}
+<!-- product CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<article>
+    <div class="container">
+        <h1>Modifier une adresse</h1>
+        {{ form_start(adressForm) }}
+        {{ form_row(adressForm.adressline) }}
+        {{ form_row(adressForm.city) }}
+        {{ form_row(adressForm.zipcode) }}
+        {{ form_row(adressForm.phone) }}
+        <button class="btn btn-dark" type="submit" class="btn btn-secondary">Valider</button>
+        {{ form_end(adressForm) }}
+    </div>
+</article>
+
+{% endblock %}

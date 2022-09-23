@@ -26,18 +26,46 @@ class UserAdressService extends AbstractController
     $adressForm->handleRequest($this->requestStack->getCurrentRequest());
 
     if ($adressForm->isSubmitted() && $adressForm->isValid()) {
-        $manager = $this->managerRegistry->getManager();
+      $manager = $this->managerRegistry->getManager();
 
-        $userAdress
-            ->setUser($this->getUser())
-            ->setAdressline($adressForm['adressline']->getData())
-            ->setCity($adressForm['city']->getData())
-            ->setZipcode($adressForm['zipcode']->getData())
-            ->setPhone($adressForm['phone']->getData());
+      $userAdress
+        ->setUser($this->getUser())
+        ->setAdressline($adressForm['adressline']->getData())
+        ->setCity($adressForm['city']->getData())
+        ->setZipcode($adressForm['zipcode']->getData())
+        ->setPhone($adressForm['phone']->getData());
 
-        $manager->persist($userAdress);
-        $manager->flush();
+      $manager->persist($userAdress);
+      $manager->flush();
     }
     return $adressForm;
+  }
+
+  public function edit($userAdress)
+  {
+    $adressForm = $this->createForm(UserAdressType::class, $userAdress);
+    $adressForm->handleRequest($this->requestStack->getCurrentRequest());
+
+    if ($adressForm->isSubmitted() && $adressForm->isValid()) {
+      $manager = $this->managerRegistry->getManager();
+
+      $userAdress
+        ->setUser($this->getUser())
+        ->setAdressline($adressForm['adressline']->getData())
+        ->setCity($adressForm['city']->getData())
+        ->setZipcode($adressForm['zipcode']->getData())
+        ->setPhone($adressForm['phone']->getData());
+
+      $manager->persist($userAdress);
+      $manager->flush();
+    }
+    return $adressForm;
+  }
+
+  public function delete($userAdress)
+  {
+    $manager = $this->managerRegistry->getManager();
+    $manager->remove($userAdress);
+    $manager->flush();
   }
 }

@@ -1,12 +1,165 @@
 h1 {
-  margin: 2rem;
-  font-size: 2.5rem;
+  margin: 1.5rem;
+  font-size: 2rem;
   text-align: center;
   font-weight: 600;
 }
 
-.adress {
-  .add-adress {
-    text-decoration: underline;
+.account {
+  display: flex;
+  justify-content: space-between;
+
+  .order-section {
+    width: calc(50% - 1rem);
+
+    .orders {
+      margin: 1rem 0;
+
+      .order {
+        margin: 1rem 0;
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid rgb(211, 211, 211);
+        border-radius: 20px;
+
+        .ref {
+          text-align: center;
+          padding: .5rem 0;
+        }
+
+        .details {
+          display: flex;
+          justify-content: space-between;
+          padding: 0 1rem 0 1rem;
+          font-size: .9rem;
+
+          #date {
+            font-weight: 500;
+          }
+        }
+
+        .order-detail {
+          border-top: 1px solid rgb(211, 211, 211);
+          display: none;
+          margin-top: 10px;
+
+          .product {
+            display: flex;
+            margin: .5rem 0;
+
+            img {
+              width: 100px;
+              height: auto;
+              border-radius: 20px;
+              margin-right: .5rem;
+            }
+
+            .product-details {
+              width: 100%;
+              margin-left: 5px;
+              display: flex;
+              align-items: center;
+              padding-top: .5rem;
+              justify-content: space-between;
+              text-align: center;
+
+              .mt {
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+
+        .order-detail.active {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .infos {
+    width: calc(50% - 1rem);
+
+    .adress-title {
+      display: flex;
+      justify-content: space-between;
+
+      .add-adress {
+        text-decoration: underline;
+        color: #3e3e3e;
+      }
+    }
+
+    .adresses {
+      margin: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      row-gap: 1rem;
+
+      .adress {
+        width: 32%;
+        border-radius: 20px;
+        border: 1px solid rgb(211, 211, 211);
+        padding: 1rem;
+
+        .adress-crud {
+          margin-top: .2rem;
+          font-size: .8rem;
+
+          a {
+            text-decoration: underline;
+            color: #3e3e3e;
+            opacity: .6;
+          }
+
+          .delete {
+            margin-left: .5rem;
+          }
+        }
+      }
+    }
+  }
+
+  .info-section {
+    .info-detail {
+      margin: 1rem 0;
+    }
   }
 }
+
+@media all and (max-device-width: 1199.98px) {
+  .account {
+    .infos {
+      .adresses {
+        .adress {
+          width: calc(50% - .5rem);
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-device-width: 991.98px) {
+  .account {
+    flex-direction: column;
+
+    .order-section {
+      width: 100%;
+    }
+
+    .infos {
+      width: 100%;
+
+      .adresses {
+        .adress {
+          width: calc(50% - .5rem);
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-device-width: 768.98px) {}
+
+@media all and (max-device-width: 575.98px) {}

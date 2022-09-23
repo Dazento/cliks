@@ -52,11 +52,16 @@
             <div class="nav-right">
                 <ul class="nav-icon">
                     {{ render(controller(
-                        'App\\Controller\\ProductsController::searchBar'
+                    'App\\Controller\\ProductsController::searchBar'
                     )) }}
                     <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
                     {% if app.user %}
-                    <li><a href="{{ path('profile_index') }}"><i class="fa-solid fa-user"></i></a></li>
+                    <li class="user-icon"><a href="{{ path('profile_index') }}"><i class="fa-solid fa-user"></i></a>
+                        <ul>
+                            <a href="{{ path('profile_index') }}" class="link-loged">mon compte</a>
+                            <a href="{{ path('app_logout') }}" class="link-loged">déconnexion</a>
+                        </ul>
+                    </li>
                     {% else %}
                     <li class="user-icon"><i class="fa-solid fa-user"></i>
                         <ul>
@@ -89,7 +94,6 @@
         {% endfor %}
         {% block body %}{% endblock %}
     </main>
-
 
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/a85a826387.js" crossorigin="anonymous"></script>

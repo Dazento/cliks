@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\UserAdress;
-use App\Form\UserAdressType;
 use App\Service\UserAdressService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,19 +17,34 @@ class ProfileController extends AbstractController
     #[Route('/', name: '_index')]
     public function index(): Response
     {
-
-        return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController',
-        ]);
+        return $this->render('profile/index.html.twig');
     }
 
     #[Route('/adresse/add', name: '_adress_add')]
-    public function addAdress(Request $request, ManagerRegistry $managerRegistry, UserAdressService $userService): Response
+    public function addAdress(UserAdressService $userService): Response
     {
         $adressForm = $userService->add();
-        
+
         return $this->render('profile/addAdress.html.twig', [
             'adressForm' => $adressForm->createView(),
         ]);
+    }
+
+    #[Route('/adresse/edit/{id}', name: '_adress_edit')]
+    public function editAdress(UserAdressService $userService, UserAdress $userAdress): Response
+    {
+        $adressForm = $userService->edit($userAdress);
+
+        return $this->render('profile/editAdress.html.twig', [
+            'adressForm' => $adressForm->createView(),
+        ]);
+    }
+
+    #[Route('/adresse/delete/{id}', name: '_adress_delete')]
+    public function deleteAdress(UserAdressService $userService, UserAdress $userAdress): Response
+    {
+        $userService->delete($userAdress);
+        
+        return $this->redirectToRoute('profile_index');
     }
 }
