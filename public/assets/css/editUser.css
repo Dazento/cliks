@@ -1,0 +1,11 @@
+.form-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.form-row div {
+  width: 50%;
+}
+
+/*# sourceMappingURL=editUser.css.map */

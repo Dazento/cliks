@@ -5,11 +5,23 @@ h1 {
   font-weight: 600;
 }
 
-.account {
+.title {
   display: flex;
   justify-content: space-between;
 
+  .add {
+    text-decoration: underline;
+    color: #3e3e3e;
+  }
+}
+
+.account {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+
   .order-section {
+    padding: 2rem 0;
     width: calc(50% - 1rem);
 
     .orders {
@@ -78,17 +90,10 @@ h1 {
   }
 
   .infos {
+    padding: 2rem 0;
     width: calc(50% - 1rem);
 
-    .adress-title {
-      display: flex;
-      justify-content: space-between;
 
-      .add-adress {
-        text-decoration: underline;
-        color: #3e3e3e;
-      }
-    }
 
     .adresses {
       margin: 1rem 0;
@@ -122,8 +127,33 @@ h1 {
   }
 
   .info-section {
+    padding: 2rem 0;
+
     .info-detail {
       margin: 1rem 0;
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+
+        tr {
+          border-bottom: 1px solid rgb(211, 211, 211);
+
+          th {
+            font-weight: 500;
+          }
+
+          td {
+            padding: .5rem;
+            opacity: .8;
+          }
+        }
+
+        tr:last-child {
+          border-bottom: none;
+        }
+      }
     }
   }
 }

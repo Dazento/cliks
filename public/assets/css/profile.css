@@ -5,11 +5,22 @@ h1 {
   font-weight: 600;
 }
 
-.account {
+.title {
   display: flex;
   justify-content: space-between;
 }
+.title .add {
+  text-decoration: underline;
+  color: #3e3e3e;
+}
+
+.account {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
 .account .order-section {
+  padding: 2rem 0;
   width: calc(50% - 1rem);
 }
 .account .order-section .orders {
@@ -66,15 +77,8 @@ h1 {
   display: block;
 }
 .account .infos {
+  padding: 2rem 0;
   width: calc(50% - 1rem);
-}
-.account .infos .adress-title {
-  display: flex;
-  justify-content: space-between;
-}
-.account .infos .adress-title .add-adress {
-  text-decoration: underline;
-  color: #3e3e3e;
 }
 .account .infos .adresses {
   margin: 1rem 0;
@@ -101,8 +105,29 @@ h1 {
 .account .infos .adresses .adress .adress-crud .delete {
   margin-left: 0.5rem;
 }
+.account .info-section {
+  padding: 2rem 0;
+}
 .account .info-section .info-detail {
   margin: 1rem 0;
+}
+.account .info-section .info-detail .table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.account .info-section .info-detail .table tr {
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+.account .info-section .info-detail .table tr th {
+  font-weight: 500;
+}
+.account .info-section .info-detail .table tr td {
+  padding: 0.5rem;
+  opacity: 0.8;
+}
+.account .info-section .info-detail .table tr:last-child {
+  border-bottom: none;
 }
 
 @media all and (max-device-width: 1199.98px) {

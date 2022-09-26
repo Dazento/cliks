@@ -38,7 +38,7 @@
         <div class="cards">
             {% for product in productList %}
             <div class="card">
-                <a href="/produits/{{ product.slug }}">
+                <a href="/produits/show/{{ product.slug }}">
                     <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Image clavier">
                     <h3>{{ product.name }}</h3>
                     <p>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
@@ -67,7 +67,7 @@
                 <div class="cards">
                     {% for keycaps in keycapsList %}
                     <div class="card">
-                        <a href="/produits/{{ keycaps.slug }}">
+                        <a href="/produits/show/{{ keycaps.slug }}">
                             <img src="/assets/img/product/mainImg/{{ keycaps.mainImage }}" alt="Image keycaps">
                             <h3>{{ keycaps.name }}</h3>
                             <p>{{ (keycaps.price / 100)|number_format(2, ',', ' ') }} €</p>
@@ -81,7 +81,7 @@
                 <div class="cards">
                     {% for switch in switchList %}
                     <div class="card">
-                        <a class="keycaps-link" href="/produits/{{ switch.slug }}">
+                        <a class="keycaps-link" href="/produits/show/{{ switch.slug }}">
                             <img src="/assets/img/product/mainImg/{{ switch.mainImage }}" alt="Image Switch">
                             <h3>{{ switch.name }}</h3>
                             <p>{{ (switch.price / 100)|number_format(2, ',', ' ') }} €</p>

@@ -3,20 +3,25 @@
 {% block title %}Inscription{% endblock %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
 {% endblock %}
 
 {% block body %}
-<section class="">
+<article>
     <div class="container">
         <h1>Inscription</h1>
 
         {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.firstname) }}
+        <div class="form-row">
+            {{ form_row(registrationForm.lastname) }}
+            {{ form_row(registrationForm.firstname) }}
+        </div>
         {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword.first) }}
-        {{ form_row(registrationForm.plainPassword.second) }}
+        <div class="form-row">
+            {{ form_row(registrationForm.plainPassword.first) }}
+            {{ form_row(registrationForm.plainPassword.second) }}
+        </div>
         {{ form_row(registrationForm.RGPDConsent) }}
 
         <button type="submit" class="btn btn-dark">S'inscrire</button>
@@ -24,5 +29,5 @@
         <p class="form-text">Compte déjà crée ? <a href="{{ path('app_login') }}" class="created">Se
                 connecter</a></p>
     </div>
-</section>
+</article>
 {% endblock %}

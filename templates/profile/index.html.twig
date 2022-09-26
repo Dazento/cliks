@@ -58,9 +58,9 @@
                 </div>
             </div>
             <div class="infos">
-                <div class="adress-title">
+                <div class="title">
                     <h2>Mes adresses</h2>
-                    <a href="{{ path('profile_adress_add') }}" class="add-adress">Ajouter une adresse</a>
+                    <a href="{{ path('profile_adress_add') }}" class="add">Ajouter une adresse</a>
                 </div>
                 <div class="adresses">
                     {% for address in app.user.userAdresses %}
@@ -77,17 +77,27 @@
                     {% endfor %}
                 </div>
                 <div class="info-section">
-                    <h2>Mes informations</h2>
+                    <div class="title">
+                        <h2>Mes informations</h2>
+                        <a href="{{ path('profile_user_edit') }}" class="add">Modifier mes informations</a>
+                    </div>
                     <div class="info-detail">
-                        <div>
-                            <p>Nom : {{ app.user.lastname }}</p>
-                        </div>
-                        <div>
-                            <p>Prénom : {{ app.user.firstname }}</p>
-                        </div>
-                        <div>
-                            <p>Email : {{ app.user.email }}</p>
-                        </div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ app.user.lastname }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Prénom</th>
+                                    <td>{{ app.user.firstname }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ app.user.email }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
