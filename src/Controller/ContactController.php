@@ -26,10 +26,10 @@ class ContactController extends AbstractController
                 $contact = $contactForm->getData();
                 $email = (new TemplatedEmail())
                     ->from(new Address($contact['email'], $contact['firstname'] . ' ' . $contact['lastname'])) // expéditeur
-                    ->to(new Address('dylanbury.pro@gmail.com')) // destinateur
+                    ->to(new Address($this->getParameter('email'), 'Cliks')) // destinateur
                     ->replyTo(new Address($contact['email'], $contact['firstname'] . ' ' . $contact['lastname']))
                     ->subject($contact['subject'])
-                    ->htmlTemplate('contact/contactEmail.html.twig')
+                    ->htmlTemplate('emails/contactEmail.html.twig')
                     ->context([
                         'firstname' => $contact['firstname'],
                         'lastname' => $contact['lastname'],
@@ -38,7 +38,7 @@ class ContactController extends AbstractController
                         'emailAdress' => $contact['email'],
                     ]);
                     $mailer->send($email);
-                    $this->addFlash('succes', 'Votre message a bien été envoyé');
+                    $this->addFlash('success', 'Votre message a bien été envoyé');
                     return $this->redirectToRoute('contact');
             }
         }

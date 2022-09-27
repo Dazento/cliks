@@ -3,7 +3,9 @@
 {% block title %}Paiement{% endblock %}
 
 {% block body %}
-
-<p>Votre paiement a été accepté</p>
+<div class="container">
+  <h2>Merci {{ app.user.firstname }} !</h2>
+  <p class="alert alert-succes">Votre paiement a bien été accepté</p>
+</div>
 
 {% endblock %}

@@ -3,7 +3,9 @@
 {% block title %}Paiement{% endblock %}
 
 {% block body %}
-
-<p>Votre paiement a été refusé</p>
+<div class="container">
+  <p class="alert alert-error">Votre paiement a été refusé veuillez réessayer <a
+      href="{{ path('cart_validation') }}"></a></p>
+</div>
 
 {% endblock %}

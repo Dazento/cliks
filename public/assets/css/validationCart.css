@@ -1,0 +1,91 @@
+section {
+  margin-top: 3rem;
+}
+section h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+section .validationCart {
+  margin: 2rem 0;
+  display: flex;
+  width: 100%;
+  gap: 3em;
+}
+section .validationCart .adresses {
+  width: 50%;
+}
+section .validationCart .adresses form {
+  margin: 0 0 1rem 0;
+}
+section .validationCart .adresses #addressForm {
+  height: 0px;
+  overflow: hidden;
+}
+section .validationCart .adresses #add-address {
+  text-decoration: underline;
+  color: #3e3e3e;
+}
+section .validationCart .cart {
+  width: 50%;
+  padding: 1.5rem;
+  background-color: rgb(240, 240, 240);
+  border-radius: 20px;
+  height: 100%;
+}
+section .validationCart .cart .product {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+section .validationCart .cart .product img {
+  width: 75px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+section .validationCart .cart .product .product-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+section .validationCart .cart .total {
+  border-top: 1px solid rgb(211, 211, 211);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+section .validationCart .cart .total p {
+  font-weight: 500;
+}
+
+@media all and (max-device-width: 767.98px) {
+  section {
+    margin-top: 1rem;
+  }
+  section h1 {
+    font-size: 1.5rem;
+  }
+  section .validationCart {
+    flex-direction: column-reverse;
+  }
+  section .validationCart .adresses {
+    width: 100%;
+  }
+  section .validationCart .cart {
+    width: 100%;
+  }
+}
+@media all and (max-device-width: 575.98px) {
+  section .validationCart .cart {
+    padding: 1rem;
+  }
+  section .validationCart .cart .product .product-info {
+    display: block;
+  }
+  section .validationCart .cart .product .product-info p:first-child {
+    margin-bottom: 0.2rem;
+  }
+}
+
+/*# sourceMappingURL=validationCart.css.map */

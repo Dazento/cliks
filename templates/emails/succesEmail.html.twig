@@ -1,0 +1,22 @@
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+<h1>Bonjour, nous vous remercions de votre commande.</h1>
+
+<h2>Voici les details de votre commande</h2>
+
+<p>Référence : {{ order.reference }}</p>
+<p>Les produits de votre commande :
+  <ul>
+    {% for orderDetail in order.orderDetails %}
+      <li>{{ orderDetail.product.name }}</li>
+    {% endfor %}
+  </ul>
+</p>
+<p>Montant total : {{ (order.amount / 100)|number_format(2, ',', ' ') }} €</p>
+<p>adresse de livraison : {{ order.deliveryAdress.adressline }}</p>
+<p>adresse de livraison : {{ order.deliveryAdress.city }}</p>
+<p>adresse de livraison : {{ order.deliveryAdress.zipcode }}</p>
+
+{% endblock %}

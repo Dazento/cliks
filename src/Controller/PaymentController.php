@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Order;
-use App\Service\CartService;
-use Doctrine\Persistence\ManagerRegistry;
 use Stripe\StripeClient;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\CartService;
+use Symfony\Component\Mime\Address;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
 
 class PaymentController extends AbstractController
 {
@@ -56,7 +59,7 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/payment/{order}/success', name: 'success')]
-    public function success(Order $order, CartService $cartService, ManagerRegistry $managerRegistry, Request $request): Response
+    public function success(Order $order, CartService $cartService, ManagerRegistry $managerRegistry, Request $request, MailerInterface $mailer): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
             return $this->redirectToRoute('cart_index');
@@ -78,7 +81,17 @@ class PaymentController extends AbstractController
 
         $manager->flush();
 
-        // envoyer un mail récapitulatif au client
+        $email = (new TemplatedEmail())
+            ->from(new Address($this->getParameter('email'), 'Cliks'))
+            ->to($order->getUser()->getEmail())
+            ->subject('Votre commande a bien été pris en compte !')
+            ->htmlTemplate('emails/succesEmail.html.twig')
+            ->context([
+                'order' => $order
+            ]);
+        $mailer->send($email);
+        $this->addFlash('success', 'Un email de confirmation vous a été envoyé');
+
         // envoyer un mail d'information à l'admin (préparation de la commande)
 
         return $this->render('payment/success.html.twig');

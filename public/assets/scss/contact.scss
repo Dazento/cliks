@@ -1,4 +1,5 @@
-article {
+article,
+section {
   margin: 3rem 0;
 
   h1 {
@@ -24,5 +25,17 @@ article {
 
   button {
     margin-top: 1rem;
+  }
+}
+
+@media all and (max-device-width: 767.98px) {
+
+  article,
+  section {
+    margin: 2rem 0;
+
+    h1 {
+      font-size: 2rem;
+    }
   }
 }

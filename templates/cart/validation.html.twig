@@ -4,7 +4,12 @@
 
 {% block stylesheets %}
 <!-- cart CSS -->
-<link rel="stylesheet" href="{{ asset('assets/css/cart.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/validationCart.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('assets/js/validationCart.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -12,56 +17,43 @@
 <section>
     <div class="container">
         <h1>Validation du panier</h1>
-        <div class="checkout">
-            <div class="table-cart">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="text-left">Produit</th>
-                            <th>Prix</th>
-                            <th>Quantité</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in cartData %}
-                        <tr>
-                            <td class="text-left product"><a
-                                    href="{{ path('products_product', {slug: data.product.slug}) }}"><img
-                                        class="product-img"
-                                        src="{{ asset('assets/img/product/mainImg/')}}{{ data.product.mainImage }}"
-                                        alt=""></a>{{
-                                data.product.name }}</td>
-                            <td>{{ (data.product.price / 100)|number_format(2, ',', ' ') }} €</td>
-                            <td><span class="quantity"><a href="{{ path('cart_remove', {id: data.product.id}) }}">-</a>
-                                    {{
-                                    data.quantity }} <a
-                                        href="{{ path('cart_add', {id: data.product.id}) }}">+</a></span>
-                            </td>
-                            <td class="total">{{ ((data.quantity * data.product.price) / 100)|number_format(2, ',', ' ')
-                                }}
-                                € <a href="{{ path('cart_delete', {id: data.product.id}) }}"><i
-                                        class="fa-solid fa-trash"></i></a></td>
-                        </tr>
-                        {% else %}
-                        <tr>
-                            <td colspan="5" class="empty-cart">Votre panier est vide</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="final-checkout">
-                <div class="cart-total">
-                    {{ form_start(cartValidationForm) }}
-                    <button type="submit" class="btn btn-dark">Payer</button>
-                    {{ form_end(cartValidationForm) }}
-                    <button>Ajouter une adresse</button>
+        <div class="validationCart">
+            <div class="adresses">
+                <h2>Mes adresses</h2>
+                {{ form_start(cartValidationForm) }}
+                {{ form_row(cartValidationForm.deliveryAdress) }}
+                {{ form_row(cartValidationForm.billingAdress) }}
+                <button type="submit" class="btn btn-dark">Payer</button>
+                {{ form_end(cartValidationForm) }}
+                <a id="add-address">Ajouter une adresse</a>
+                <div id="addressForm">
                     {{ form_start(adressForm) }}
-                        <button type="submit" class="btn-sm btn-dark">OK</button>
+                    {{ form_row(adressForm.adressline) }}
+                    {{ form_row(adressForm.city) }}
+                    {{ form_row(adressForm.zipcode) }}
+                    {{ form_row(adressForm.phone) }}
+                    <button class="btn btn-dark" type="submit" class="btn btn-secondary">Ajouter</button>
                     {{ form_end(adressForm) }}
                 </div>
             </div>
+            <div class="cart">
+                {% for data in cartData %}
+                <div class="product">
+                    <a href="{{ path('products_product', {slug: data.product.slug}) }}">
+                        <img src="{{ asset('assets/img/product/mainImg/')}}{{ data.product.mainImage }}" alt="">
+                    </a>
+                    <div class="product-info">
+                        <p>{{data.product.name }}</p>
+                        <p>{{ ((data.quantity * data.product.price) / 100)|number_format(2, ',', ' ') }} €</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="total">
+                    <p>Total</p>
+                    <p>{{ (total / 100)|number_format(2, ',', ' ') }} €</p>
+                </div>
+            </div>
         </div>
+    </div>
 </section>
 {% endblock %}
