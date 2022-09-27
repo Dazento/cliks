@@ -103,6 +103,7 @@ h2 {
   margin-top: 4rem;
   flex-wrap: wrap;
   display: flex;
+  row-gap: 2rem;
 }
 .category-section .cards .card {
   margin: 0 10px;
@@ -132,14 +133,24 @@ h2 {
     width: calc(33% - 20px);
   }
 }
-@media all and (max-device-width: 768.98px) {
+@media all and (max-device-width: 767.98px) {
   .product-section .cards .card {
     width: calc(50% - 20px);
+  }
+  .category-section .cards .card {
+    width: calc(33% - 20px);
   }
 }
 @media all and (max-device-width: 575.98px) {
   .product-section .cards .card {
     width: calc(100% - 20px);
+  }
+  .category-section .cards .card {
+    width: calc(50% - 20px);
+  }
+  .category-section .cards .card h3 {
+    font-size: 1.1rem;
+    margin: 5px 0;
   }
 }
 
