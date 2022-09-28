@@ -10,6 +10,10 @@
   font-family: "Inter", sans-serif;
 }
 
+main {
+  padding-bottom: 2rem;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;

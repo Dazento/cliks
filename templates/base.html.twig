@@ -18,6 +18,9 @@
     {% else %}
     <link rel="stylesheet" href="{{ asset('assets/css/headerDark.css') }}">
     {% endif %}
+    <!-- Footer Css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
+
     {% block stylesheets %}
     {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -94,6 +97,42 @@
         {% endfor %}
         {% block body %}{% endblock %}
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-div">
+                <div class="footer-card">
+                    <a href="{{ path('app_home') }}" class="logo-footer">
+                        <i class="bi bi-circle-fill"></i>
+                        <span>Cliks</span>
+                    </a>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer consequat eros nec tempus
+                        molestie.
+                    </p>
+                    <div class="socials">
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-tiktok"></i></a>
+                        <a href=""><i class="fa-brands fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-navigation footer-card">
+                    <h3>Navigations</h3>
+                    <a href="{{ path('app_home') }}">Accueil</a>
+                    <a href="{{ path('products_index') }}">Produits</a>
+                    <a href="{{ path('cart_index') }}">Panier</a>
+                    <a href="{{ path('profile_index') }}">Mon compte</a>
+                    <a href="{{ path('contact') }}">Contact</a>
+                </div>
+                <div class="legales footer-card">
+                    <h3>Légales</h3>
+                    <a href="">Mentions légales</a>
+                    <a href="">CGV et CGU</a>
+                    <a href="">Politique de confidentialité</a>
+                    <a href="">Plan du site</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- FontAwesome Icon -->
     <script src="https://kit.fontawesome.com/a85a826387.js" crossorigin="anonymous"></script>

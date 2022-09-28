@@ -1,0 +1,63 @@
+footer {
+  padding: 2rem 0;
+  background-color: #333333;
+  color: white;
+}
+footer .footer-div {
+  display: flex;
+  justify-content: space-between;
+  row-gap: 1rem;
+}
+footer .footer-div .footer-card {
+  width: 25%;
+}
+footer .footer-div .footer-card h3 {
+  margin-bottom: 1rem;
+}
+footer .footer-div .footer-card a {
+  margin-bottom: 5px;
+  display: block;
+  color: white;
+}
+footer .footer-div .socials {
+  margin: 10px 0;
+}
+footer .footer-div .socials a {
+  display: inline-block;
+  color: white;
+  font-size: 1.5rem;
+}
+footer .footer-div .socials a:first-child {
+  margin-right: 5px;
+}
+footer .footer-div .socials a:last-child {
+  margin-left: 5px;
+}
+footer .footer-div .logo-footer {
+  color: white;
+}
+footer .footer-div .logo-footer i {
+  font-size: 2rem;
+}
+footer .footer-div .logo-footer span {
+  margin-left: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 767.98px) {
+  footer .footer-div {
+    flex-wrap: wrap;
+  }
+  footer .footer-div .footer-card {
+    width: 40%;
+  }
+  footer .footer-div .footer-card:first-child {
+    width: 60%;
+  }
+  footer .footer-div .footer-card:last-child {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=footer.css.map */
