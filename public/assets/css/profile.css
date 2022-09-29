@@ -111,7 +111,12 @@ h1 {
 .account .info-section .info-detail {
   margin: 1rem 0;
 }
+.account .info-section .info-detail .edit-password {
+  text-decoration: underline;
+  color: #3e3e3e;
+}
 .account .info-section .info-detail .table {
+  margin-bottom: 0.5rem;
   width: 100%;
   border-collapse: collapse;
   text-align: left;

@@ -132,7 +132,13 @@ h1 {
     .info-detail {
       margin: 1rem 0;
 
+      .edit-password {
+        text-decoration: underline;
+        color: #3e3e3e;
+      }
+
       .table {
+        margin-bottom: .5rem;
         width: 100%;
         border-collapse: collapse;
         text-align: left;

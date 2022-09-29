@@ -1,0 +1,17 @@
+main {
+  padding: 2rem;
+}
+main h1, main h2 {
+  font-weight: 500;
+}
+main h1 {
+  margin-bottom: 1rem;
+}
+main h2 {
+  margin: 1rem 0;
+}
+main p {
+  margin: 0.2rem;
+}
+
+/*# sourceMappingURL=mentionsLegales.css.map */
