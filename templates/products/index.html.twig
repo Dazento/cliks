@@ -16,7 +16,7 @@
     </div>
     <div class="container">
         <div class="products">
-            {% for product in productList %}
+            {% for product in productList|reverse %}
             <div class="product">
                 <a href="/produits/show/{{ product.slug }}">
                     <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Photo d'un produit de cliks">
