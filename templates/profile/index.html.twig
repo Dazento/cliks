@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Compte{% endblock %}
+{% block title %}Mon compte{% endblock %}
 
 {% block stylesheets %}
 <!-- profile CSS -->
@@ -32,7 +32,7 @@
                             {% for orderDetail in order.orderDetails %}
                             <div class="product">
                                 <a href="{{ path('products_product', {slug: orderDetail.product.slug}) }}">
-                                    <img src="/assets/img/product/mainImg/{{ orderDetail.product.mainImage }}" alt="">
+                                    <img src="/assets/img/product/mainImg/{{ orderDetail.product.mainImage }}" alt="Photo d'un produits de la commande">
                                 </a>
                                 <div class="product-details">
                                     <div class="product-info">
@@ -98,7 +98,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="{{ path('profile_password_edit', {id: app.user.id}) }}" class="edit-password">Modifier mon mot de passe</a>
+                        <a href="{{ path('profile_password_edit', {id: app.user.id}) }}" class="edit-password">Modifier
+                            mon mot de passe</a>
                     </div>
                 </div>
             </div>

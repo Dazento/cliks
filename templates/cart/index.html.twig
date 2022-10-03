@@ -30,7 +30,7 @@
                                     href="{{ path('products_product', {slug: data.product.slug}) }}"><img
                                         class="product-img"
                                         src="{{ asset('assets/img/product/mainImg/')}}{{ data.product.mainImage }}"
-                                        alt=""></a>{{
+                                        alt="Photo des produits du panier"></a>{{
                                 data.product.name }}</td>
                             <td>{{ (data.product.price / 100)|number_format(2, ',', ' ') }} €</td>
                             <td><span class="quantity"><a href="{{ path('cart_remove', {id: data.product.id}) }}">-</a>

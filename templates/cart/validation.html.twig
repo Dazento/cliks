@@ -40,7 +40,7 @@
                 {% for data in cartData %}
                 <div class="product">
                     <a href="{{ path('products_product', {slug: data.product.slug}) }}">
-                        <img src="{{ asset('assets/img/product/mainImg/')}}{{ data.product.mainImage }}" alt="">
+                        <img src="{{ asset('assets/img/product/mainImg/')}}{{ data.product.mainImage }}" alt="Photo des produits du panier de validation">
                     </a>
                     <div class="product-info">
                         <p>{{data.product.name }}</p>

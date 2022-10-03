@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductsController!{% endblock %}
+{% block title %}Résultats de recherche{% endblock %}
 
 {% block stylesheets %}
 <!-- searchResult CSS -->
@@ -21,7 +21,7 @@
                 {% for product in products %}
                 <div class="product">
                     <a href="/produits/{{ product.slug }}">
-                        <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Image clavier">
+                        <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Photo d'un produit de cliks">
                         <h3>{{ product.name }}</h3>
                         <p>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
                     </a>

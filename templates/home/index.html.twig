@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cliks - Boutique de clavier custom{% endblock %}
+{% block title %}Boutique de clavier custom{% endblock %}
+
+{% block description %}Cliks, LA boutique de clavier mécanique custom en France. Vous y trouverez tout ce dont vous avez besoin pour vos clavier et vous pouvez créer et personnaliser votre clavier de A à Z{% endblock %}
 
 {% block stylesheets %}
 <!-- home CSS -->
@@ -15,9 +17,9 @@
 
 <section class="section-slider">
     <div class="slider">
-        <img src="{{ asset('assets/img/home/accueil.png') }}" alt="" class="img__slider active">
-        <img src="{{ asset('assets/img/home/accueil2.png') }}" alt="" class="img__slider">
-        <img src="{{ asset('assets/img/home/accueil3.png') }}" alt="" class="img__slider">
+        <img src="{{ asset('assets/img/home/accueil.png') }}" alt="Photo principale de clavier" class="img__slider active">
+        <img src="{{ asset('assets/img/home/accueil2.png') }}" alt="Photo principale de clavier" class="img__slider">
+        <img src="{{ asset('assets/img/home/accueil3.png') }}" alt="Photo principale de clavier" class="img__slider">
         <div id="next">
             <i class="fas fa-chevron-circle-right"></i>
         </div>
@@ -39,7 +41,7 @@
             {% for product in productList %}
             <div class="card">
                 <a href="/produits/show/{{ product.slug }}">
-                    <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Image clavier">
+                    <img src="/assets/img/product/mainImg/{{ product.mainImage }}" alt="Photo des clavier de cliks">
                     <h3>{{ product.name }}</h3>
                     <p>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
                 </a>
@@ -68,7 +70,7 @@
                     {% for keycaps in keycapsList %}
                     <div class="card">
                         <a href="/produits/show/{{ keycaps.slug }}">
-                            <img src="/assets/img/product/mainImg/{{ keycaps.mainImage }}" alt="Image keycaps">
+                            <img src="/assets/img/product/mainImg/{{ keycaps.mainImage }}" alt="Photo des clavier de keycaps">
                             <h3>{{ keycaps.name }}</h3>
                             <p>{{ (keycaps.price / 100)|number_format(2, ',', ' ') }} €</p>
                         </a>
@@ -82,7 +84,7 @@
                     {% for switch in switchList %}
                     <div class="card">
                         <a class="keycaps-link" href="/produits/show/{{ switch.slug }}">
-                            <img src="/assets/img/product/mainImg/{{ switch.mainImage }}" alt="Image Switch">
+                            <img src="/assets/img/product/mainImg/{{ switch.mainImage }}" alt="Photo des clavier de switch">
                             <h3>{{ switch.name }}</h3>
                             <p>{{ (switch.price / 100)|number_format(2, ',', ' ') }} €</p>
                         </a>

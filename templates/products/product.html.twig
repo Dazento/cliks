@@ -19,7 +19,7 @@
                 <img class="img__slider active" src="/assets/img/product/mainImg/{{ product.mainImage }}"
                     alt="Image du produit">
                 {% for images in imageList %}
-                <img class="img__slider" src="{{ asset('uploads/product/')}}{{ images.image }}" alt="Image clavier">
+                <img class="img__slider" src="{{ asset('uploads/product/')}}{{ images.image }}" alt="Photo du produit {{ product.name }}">
                 {% endfor %}
                 <div id="next">
                     <i class="fas fa-chevron-circle-right"></i>
