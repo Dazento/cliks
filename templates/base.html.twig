@@ -59,10 +59,20 @@
             </div>
             <div class="nav-right">
                 <ul class="nav-icon">
+
+                    {% if is_mobile() or is_tablet() %}
+                    <li id="search"><a href="{{ path('products_search') }}"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    {% else %}
                     {{ render(controller(
                     'App\\Controller\\ProductsController::searchBar'
                     )) }}
                     <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
+                    {% endif %}
+
+                    <!-- {{ render(controller(
+                    'App\\Controller\\ProductsController::searchBar'
+                    )) }}
+                    <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li> -->
                     {% if app.user %}
                     <li class="user-icon"><a href="{{ path('profile_index') }}"><i class="fa-solid fa-user"></i></a>
                         <ul>

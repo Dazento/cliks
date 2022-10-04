@@ -17,6 +17,7 @@ $dark: #3E3E3E;
 
 main {
   padding-bottom: 2rem;
+  min-height: calc(100vh - 97px - 228px - 3rem);
 }
 
 a {

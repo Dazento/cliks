@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Repository\ProductImageRepository;
 use App\Repository\ProductRepository;
+use MobileDetectBundle\DeviceDetector\MobileDetectorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -40,9 +41,14 @@ class ProductsController extends AbstractController
     #[Route('/search', name: '_search')]
     public function searchResult(RequestStack $requestStack, ProductRepository $productRepository): Response
     {
-        $searchedValue = $requestStack->getCurrentRequest()->get('form')['search'];
-        if ($searchedValue) {
-            $products = $productRepository->search($searchedValue);
+        if (isset($requestStack->getCurrentRequest()->get('form')['search'])) {
+            $searchedValue = $requestStack->getCurrentRequest()->get('form')['search'];
+            if ($searchedValue) {
+                $products = $productRepository->search($searchedValue);
+            }
+        } else {
+            $searchedValue = null;
+            $products = null;
         }
 
         return $this->render('products/searchResult.html.twig', [
@@ -51,8 +57,11 @@ class ProductsController extends AbstractController
         ]);
     }
 
-    public function searchBar(): Response
+    public function searchBar(MobileDetectorInterface $mobileDetectorInterface): Response
     {
+        $mobileDetectorInterface->isMobile();
+        $mobileDetectorInterface->isTablet();
+
         $searchForm = $this->createFormBuilder()
             ->setAction($this->generateUrl('products_search'))
             ->add('search', TextType::class, [
