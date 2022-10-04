@@ -11,7 +11,6 @@
 <article>
     <div class="container">
         <h1>Inscription</h1>
-
         {{ form_start(registrationForm) }}
         <div class="form-row">
             {{ form_row(registrationForm.lastname) }}
@@ -22,8 +21,9 @@
             {{ form_row(registrationForm.plainPassword.first) }}
             {{ form_row(registrationForm.plainPassword.second) }}
         </div>
-        {{ form_row(registrationForm.RGPDConsent) }}
-
+        <a class="form-rgpd">
+            {{ form_row(registrationForm.RGPDConsent) }}
+        </a>
         <button type="submit" class="btn btn-dark">S'inscrire</button>
         {{ form_end(registrationForm) }}
         <p class="form-text">Compte déjà crée ? <a href="{{ path('app_login') }}" class="created">Se

@@ -23,21 +23,12 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'E-mail',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
             ])
             ->add('RGPDConsent', CheckboxType::class, [
                 'label' => 'J\'accepte les conditions d\'utilisations.',

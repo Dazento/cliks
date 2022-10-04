@@ -145,6 +145,9 @@ h2 {
   .product-section .cards .card {
     width: calc(100% - 20px);
   }
+  .category-section .title-category .margin-right {
+    margin-right: 1rem;
+  }
   .category-section .cards .card {
     width: calc(50% - 20px);
   }

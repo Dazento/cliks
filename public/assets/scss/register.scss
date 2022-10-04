@@ -10,6 +10,18 @@ article {
     }
   }
 
+  .form-rgpd {
+     div {
+      flex-direction: row-reverse;
+      justify-content: left;
+      align-items: baseline;
+
+      input {
+        margin-right: .5rem;
+      }
+     }
+  }
+
   .created {
     color: #3e3e3e;
     border-bottom: 1px solid #3e3e3e;
