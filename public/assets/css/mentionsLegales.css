@@ -13,5 +13,8 @@ main h2 {
 main p {
   margin: 0.2rem;
 }
+main .cgv p {
+  margin: 0.2rem 0;
+}
 
 /*# sourceMappingURL=mentionsLegales.css.map */
