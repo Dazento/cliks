@@ -179,6 +179,7 @@ h1 {
 @media all and (max-device-width: 991.98px) {
   .account {
     flex-direction: column;
+    gap: 0;
 
     .order-section {
       width: 100%;
@@ -195,7 +196,3 @@ h1 {
     }
   }
 }
-
-@media all and (max-device-width: 768.98px) {}
-
-@media all and (max-device-width: 575.98px) {}

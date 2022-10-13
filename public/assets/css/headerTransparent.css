@@ -84,6 +84,12 @@ header nav .nav-icon .user-icon {
   cursor: pointer;
   position: relative;
 }
+header nav .nav-icon .user-icon li {
+  margin-left: 0;
+}
+header nav .nav-icon .user-icon li:last-child a {
+  width: -webkit-fill-available;
+}
 header nav .nav-icon .user-icon:hover ul {
   display: flex;
 }

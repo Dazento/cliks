@@ -11,8 +11,7 @@
     <meta property="og:url" content="https://cliks.dylanbury.com/">
     {% block meta %}{% endblock %}
 
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png')}}" >
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
     <!-- globals CSS -->
@@ -61,7 +60,8 @@
                 <ul class="nav-icon">
 
                     {% if is_mobile() or is_tablet() %}
-                    <li id="search"><a href="{{ path('products_search') }}"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    <li id="search"><a href="{{ path('products_search') }}"><i
+                                class="fa-solid fa-magnifying-glass"></i></a></li>
                     {% else %}
                     {{ render(controller(
                     'App\\Controller\\ProductsController::searchBar'
@@ -69,31 +69,29 @@
                     <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
                     {% endif %}
 
-                    <!-- {{ render(controller(
-                    'App\\Controller\\ProductsController::searchBar'
-                    )) }}
-                    <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li> -->
                     {% if app.user %}
                     <li class="user-icon"><a href="{{ path('profile_index') }}"><i class="fa-solid fa-user"></i></a>
                         <ul>
-                            <a href="{{ path('profile_index') }}" class="link-loged">mon compte</a>
-                            <a href="{{ path('app_logout') }}" class="link-loged">déconnexion</a>
+                          <li><a href="{{ path('profile_index') }}" class="link-loged">mon compte</a></li>
+                          <li><a href="{{ path('app_logout') }}" class="link-loged">déconnexion</a></li>
                         </ul>
                     </li>
                     {% else %}
                     <li class="user-icon"><i class="fa-solid fa-user"></i>
                         <ul>
-                            <a href="{{ path('app_login') }}" class="btn-sm btn-dark">Se connecter</a>
-                            <a href="{{ path('app_register') }}" class="btn-sm btn-dark">S'inscrire</a>
+                            <li><a href="{{ path('app_login') }}" class="btn-sm btn-dark">Se connecter</a></li>
+                            <li><a href="{{ path('app_register') }}" class="btn-sm btn-dark">S'inscrire</a></li>
                         </ul>
                     </li>
                     {% endif %}
-                    <li class="cart-icon"><a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i>
+                    <li class="cart-icon">
+                        <a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping"></i>
                             {% if app.session.get('cart') is not empty %}
                             <span class="cart-badge">{{
                                 render(controller('App\\Controller\\CartController::getNbProducts')) }}</span>
                             {% endif %}
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -140,8 +138,8 @@
                 </div>
                 <div class="legales footer-card">
                     <h3>Légales</h3>
-                    <a href="{{ path('legal') }}">Mentions légales</a>
-                    <a href="{{ path('cgv') }}">Conditions d'utilisations</a>
+                    <a href="{{ path('legal_mention') }}">Mentions légales</a>
+                    <a href="{{ path('legal_cgv') }}">Conditions d'utilisations</a>
                 </div>
             </div>
         </div>

@@ -110,6 +110,16 @@ header {
         cursor: pointer;
         position: relative;
 
+        li {
+          margin-left: 0;
+        }
+
+        li:last-child {
+          a {
+            width: -webkit-fill-available;
+          }
+        }
+
         &:hover ul {
           display: flex;
         }

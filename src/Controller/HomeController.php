@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\ProductImage;
-use App\Repository\ProductImageRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

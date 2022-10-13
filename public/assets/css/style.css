@@ -19,6 +19,10 @@ a {
   cursor: pointer;
 }
 
+li {
+  list-style: none;
+}
+
 .container {
   width: calc(100% - 50px);
   max-width: 1200px;

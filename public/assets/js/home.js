@@ -1,8 +1,3 @@
-// Hero Slider Var
-const imgSlider = document.getElementsByClassName('img__slider');
-const prev = document.getElementById("prev");
-const next = document.getElementById("next");
-
 // Category Switch Var
 const keycapsCard = document.getElementById('keycaps-card');
 const keycapsBtn = document.getElementById('keycaps-btn');
@@ -11,6 +6,11 @@ const switchBtn = document.getElementById('switch-btn');
 const switchBar = document.getElementById('switch-bar');
 const keycapsBtnWidth = keycapsBtn.offsetWidth;
 const switchBtnWidth = switchBtn.offsetWidth;
+
+// Hero Slider Var
+const imgSlider = document.getElementsByClassName('img__slider');
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
 
 let step = 0;
 

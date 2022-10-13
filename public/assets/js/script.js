@@ -26,6 +26,6 @@ bugerMenu.addEventListener("click", () => {
 
 // Search Bar on click
 searchBar.addEventListener("click", () => {
-searchInput.classList.toggle('active');
-searchInput.focus();
+  searchInput.classList.toggle('active');
+  searchInput.focus();
 })
