@@ -19,13 +19,16 @@ class PaymentController extends AbstractController
     #[Route('/payment/{order}', name: 'payment')]
     public function index(Request $request, Order $order, CartService $cartService): Response
     {
+        // Vérifie si l'utilisateur arrive bien de la page de validation
         if ($request->headers->get('referer') !== $this->getParameter('domain') . '/cart/validation') {
             return $this->redirectToRoute('cart_validation');
         }
 
+        // Récupère le panier et initialise le panier stripe
         $sessionCart = $cartService->getCart();
         $stripeCart = [];
 
+        // Parcourt le panier pour ajouter les données au panier Stripe
         foreach ($sessionCart as $cartElement) {
             $stripeElement = [
                 'quantity' => $cartElement['quantity'],
@@ -44,7 +47,7 @@ class PaymentController extends AbstractController
         }
 
         $stripe = new StripeClient($this->getParameter('stripe_secret_key'));
-
+        // Parametrage de la page d'achat Stripe
         $stripeSession = $stripe->checkout->sessions->create([
             'line_items' => $stripeCart,
             'mode' => 'payment',
@@ -61,10 +64,12 @@ class PaymentController extends AbstractController
     #[Route('/payment/{order}/success', name: 'success')]
     public function success(Order $order, CartService $cartService, ManagerRegistry $managerRegistry, Request $request, MailerInterface $mailer): Response
     {
+        // Vérifie si l'utilisateur arrive bien de la page stripe
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
             return $this->redirectToRoute('cart_index');
         }
-
+        
+        // vide le panier et valide le paiement
         $manager = $managerRegistry->getManager();
         $cartService->clear();
         $order->setPaid(true);
@@ -73,14 +78,15 @@ class PaymentController extends AbstractController
 
         $details = $order->getOrderDetails();
 
+        // Modifie le stock
         foreach ($details as $detail) {
             $product = $detail->getProduct();
             $product->setStock($product->getStock() - $detail->getQuantity());
             $manager->persist($product);
         }
-
         $manager->flush();
 
+        // Parametrage de l'email
         $email = (new TemplatedEmail())
             ->from(new Address($this->getParameter('email'), 'Cliks'))
             ->to($order->getUser()->getEmail())
@@ -89,18 +95,22 @@ class PaymentController extends AbstractController
             ->context([
                 'order' => $order
             ]);
+
+        // Envoie le mail
         $mailer->send($email);
+
         $this->addFlash('success', 'Un email de confirmation vous a été envoyé');
-
         // envoyer un mail d'information à l'admin (préparation de la commande)
-
         return $this->render('payment/success.html.twig');
     }
 
     #[Route('/payment/{order}/cancel', name: 'cancel')]
-    public function cancel(): Response
+    public function cancel(Request $request): Response
     {
-        // vérifier qu'on vient bien de la page de paiemetn Stripe
+        // Vérifie si l'utilisateur arrive bien de la page stripe
+        if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
+            return $this->redirectToRoute('cart_index');
+        }
         return $this->render('payment/cancel.html.twig');
     }
 }
