@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <title>Cliks - {% block title %}{% endblock %}</title>
     <meta name="author" content="Dylan Bury">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cliks.dylanbury.com/">
@@ -64,9 +64,9 @@
                     <li id="search"><a href="{{ path('products_search') }}"><i
                                 class="fa-solid fa-magnifying-glass"></i></a></li>
                     {% else %}
-                    {{ render(controller(
-                    'App\\Controller\\ProductsController::searchBar'
-                    )) }}
+                    <li>{{ render(controller(
+                        'App\\Controller\\ProductsController::searchBar'
+                        )) }}</li>
                     <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
                     {% endif %}
 

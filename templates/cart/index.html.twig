@@ -26,22 +26,15 @@
                     <tbody>
                         {% for data in cartData %}
                         <tr>
-                            <td class="text-left product"><a
-                                    href="{{ path('products_product', {slug: data.product.slug}) }}"><img
-                                        class="product-img"
-                                        src="{{ asset('assets/img/product/mainImg/')}}{{ data.product.mainImage }}"
-                                        alt="Photo des produits du panier"></a>{{
-                                data.product.name }}</td>
+                            <td class="text-left product"><a href="{{ path('products_product', {slug: data.product.slug}) }}">
+                                <img class="product-img" src="{{ asset('assets/img/product/mainImg/')}}{{ data.product.mainImage }}"
+                                    alt="Photo des produits du panier"></a>{{ data.product.name }}</td>
                             <td>{{ (data.product.price / 100)|number_format(2, ',', ' ') }} €</td>
-                            <td><span class="quantity"><a href="{{ path('cart_remove', {id: data.product.id}) }}">-</a>
-                                    {{
-                                    data.quantity }} <a
-                                        href="{{ path('cart_add', {id: data.product.id}) }}">+</a></span>
+                            <td><span class="quantity"><a href="{{ path('cart_remove', {id: data.product.id}) }}">-</a> {{ data.quantity }} 
+                                <a href="{{ path('cart_add', {id: data.product.id}) }}">+</a></span>
                             </td>
-                            <td class="total">{{ ((data.quantity * data.product.price) / 100)|number_format(2, ',', ' ')
-                                }}
-                                € <a href="{{ path('cart_delete', {id: data.product.id}) }}"><i
-                                        class="fa-solid fa-trash"></i></a></td>
+                            <td class="total">{{ ((data.quantity * data.product.price) / 100)|number_format(2, ',', ' ') }} € 
+                                <a href="{{ path('cart_delete', {id: data.product.id}) }}"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                         {% else %}
                         <tr>

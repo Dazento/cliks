@@ -17,14 +17,14 @@ class UserType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
-                    'minLength' => 3,
+                    'minLength' => 2,
                     'maxLength' => 50,
                 ]
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
-                    'minLength' => 3,
+                    'minLength' => 2,
                     'maxLength' => 50,
                 ]
             ])

@@ -1,10 +1,16 @@
-{% block body %}
+<!DOCTYPE html>
+<html lang="fr">
 
-<p>de : {{ emailAdress }}</p>
-<p>{{ firstname }} {{ lastname }}</p>
+<head>
+  <meta charset="UTF-8">=
+</head>
 
-<h1>{{ subject }}</h1>
+<body>
+  <h1>Demande de {{ firstname }} {{ lastname }}</h1>
+  <p>Email : {{ emailAddress }}</p>
+  <p>Sujet : {{ subject }}</p>
 
-<p>message : {{ message }}</p>
+  <p>message : {{ message }}</p>
+</body>
 
-{% endblock %}
+</html>
