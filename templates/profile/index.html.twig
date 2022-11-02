@@ -23,8 +23,7 @@
                     {% for order in app.user.orders %}
                     <div class="order">
                         <a class="details">
-                            <p><span id="date">Date</span> : {{ order.createdAt|date('Y-m-d') }} ({{ (order.amount /
-                                100)|number_format('2', ',', ' ') }} €)</p>
+                            <p><span id="date">Date</span> : {{ order.createdAt|date('Y-m-d') }} ({{ (order.amount / 100)|number_format('2', ',', ' ') }} €)</p>
                             <i class="fa-solid fa-chevron-down open-icon"></i>
                         </a>
                         <div class="order-detail">
@@ -32,13 +31,13 @@
                             {% for orderDetail in order.orderDetails %}
                             <div class="product">
                                 <a href="{{ path('products_product', {slug: orderDetail.product.slug}) }}">
-                                    <img src="/assets/img/product/mainImg/{{ orderDetail.product.mainImage }}" alt="Photo d'un produits de la commande">
+                                    <img src="/assets/img/product/mainImg/{{ orderDetail.product.mainImage }}"
+                                        alt="Photo d'un produits de la commande">
                                 </a>
                                 <div class="product-details">
                                     <div class="product-info">
                                         <p>{{ orderDetail.product.name}}</p>
-                                        <p class="mt">{{ (orderDetail.product.price / 100)|number_format('2', ',', ' ')
-                                            }} €</p>
+                                        <p class="mt">{{ (orderDetail.product.price / 100)|number_format('2', ',', ' ') }} €</p>
                                     </div>
                                     <div class="product-quantity">
                                         <p>Quantité</p>
@@ -46,8 +45,7 @@
                                     </div>
                                     <div class="product-total">
                                         <p>Total</p>
-                                        <p class="mt">{{ ((orderDetail.quantity * orderDetail.product.price)
-                                            /100)|number_format('2', ',', ' ') }} €</p>
+                                        <p class="mt">{{ ((orderDetail.quantity * orderDetail.product.price) /100)|number_format('2', ',', ' ') }} €</p>
                                     </div>
                                 </div>
                             </div>
